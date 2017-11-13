@@ -15,7 +15,9 @@ class CreateWeeksTable extends Migration
     {
         Schema::create('weeks', function (Blueprint $table) {
             $table->increments('id');
-            $table->timestamp('ending');
+            $table->unsignedInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->date('ending');
             $table->timestamps();
         });
     }

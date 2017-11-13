@@ -2,21 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\WeekItem;
+use App\Week;
 use Illuminate\Http\Request;
 
-class WeekItemController extends Controller
+class SummaryController extends Controller
 {
-    /**
-     * Constructor method.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
     /**
      * Display a listing of the resource.
      *
@@ -24,7 +14,10 @@ class WeekItemController extends Controller
      */
     public function index()
     {
-        //
+        $income = Week::income();
+        $goal = auth()->user()->goal;
+
+        return response()->json(compact('income', 'goal'));
     }
 
     /**
@@ -51,10 +44,10 @@ class WeekItemController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\WeekItem  $weekItem
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(WeekItem $weekItem)
+    public function show($id)
     {
         //
     }
@@ -62,10 +55,10 @@ class WeekItemController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\WeekItem  $weekItem
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(WeekItem $weekItem)
+    public function edit($id)
     {
         //
     }
@@ -74,10 +67,10 @@ class WeekItemController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\WeekItem  $weekItem
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, WeekItem $weekItem)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -85,10 +78,10 @@ class WeekItemController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\WeekItem  $weekItem
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(WeekItem $weekItem)
+    public function destroy($id)
     {
         //
     }

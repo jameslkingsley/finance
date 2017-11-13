@@ -26,4 +26,13 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    /**
+     * Casts.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'goal' => 'float'
+    ];
 }

@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\WeekItem;
+use App\Expense;
 use Illuminate\Http\Request;
 
-class WeekItemController extends Controller
+class ExpenseController extends Controller
 {
     /**
      * Constructor method.
@@ -51,10 +51,10 @@ class WeekItemController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\WeekItem  $weekItem
+     * @param  \App\Expense  $expense
      * @return \Illuminate\Http\Response
      */
-    public function show(WeekItem $weekItem)
+    public function show(Expense $expense)
     {
         //
     }
@@ -62,10 +62,10 @@ class WeekItemController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\WeekItem  $weekItem
+     * @param  \App\Expense  $expense
      * @return \Illuminate\Http\Response
      */
-    public function edit(WeekItem $weekItem)
+    public function edit(Expense $expense)
     {
         //
     }
@@ -74,10 +74,10 @@ class WeekItemController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\WeekItem  $weekItem
+     * @param  \App\Expense  $expense
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, WeekItem $weekItem)
+    public function update(Request $request, Expense $expense)
     {
         //
     }
@@ -85,10 +85,10 @@ class WeekItemController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\WeekItem  $weekItem
+     * @param  \App\Expense  $expense
      * @return \Illuminate\Http\Response
      */
-    public function destroy(WeekItem $weekItem)
+    public function destroy(Expense $expense)
     {
         //
     }

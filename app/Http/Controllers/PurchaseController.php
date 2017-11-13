@@ -2,21 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\WeekItem;
+use App\Purchase;
 use Illuminate\Http\Request;
 
-class WeekItemController extends Controller
+class PurchaseController extends Controller
 {
-    /**
-     * Constructor method.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
     /**
      * Display a listing of the resource.
      *
@@ -51,10 +41,10 @@ class WeekItemController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\WeekItem  $weekItem
+     * @param  \App\Purchase  $purchase
      * @return \Illuminate\Http\Response
      */
-    public function show(WeekItem $weekItem)
+    public function show(Purchase $purchase)
     {
         //
     }
@@ -62,10 +52,10 @@ class WeekItemController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\WeekItem  $weekItem
+     * @param  \App\Purchase  $purchase
      * @return \Illuminate\Http\Response
      */
-    public function edit(WeekItem $weekItem)
+    public function edit(Purchase $purchase)
     {
         //
     }
@@ -74,10 +64,10 @@ class WeekItemController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\WeekItem  $weekItem
+     * @param  \App\Purchase  $purchase
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, WeekItem $weekItem)
+    public function update(Request $request, Purchase $purchase)
     {
         //
     }
@@ -85,10 +75,10 @@ class WeekItemController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\WeekItem  $weekItem
+     * @param  \App\Purchase  $purchase
      * @return \Illuminate\Http\Response
      */
-    public function destroy(WeekItem $weekItem)
+    public function destroy(Purchase $purchase)
     {
         //
     }

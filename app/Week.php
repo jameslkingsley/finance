@@ -35,4 +35,31 @@ class Week extends Model
     {
         return $this->hasMany(WeekItem::class);
     }
+
+    /**
+     * Gets the week total.
+     *
+     * @return integer
+     */
+    public function total()
+    {
+        return $this->items->sum('total');
+    }
+
+    /**
+     * Gets the given month income.
+     *
+     * @return integer
+     */
+    public static function income()
+    {
+        $income = 0;
+
+        static::whereMonth('ending', '=', now()->month)->get()
+            ->each(function ($week) use (&$income) {
+                $income += $week->total();
+            });
+
+        return $income;
+    }
 }

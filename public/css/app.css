@@ -583,6 +583,10 @@ button,
   cursor: pointer;
 }
 
+* {
+  outline: 0 !important;
+}
+
 body {
   background-color: #f1f5f9;
   height: 100vh;
@@ -595,8 +599,39 @@ a {
   color: #fe5f55;
 }
 
+input,
+textarea {
+  padding: 0.25rem;
+  border-radius: .25rem;
+  border: 1px solid #596774;
+  border-color: #dde6ee;
+}
+
+input:focus,
+textarea:focus {
+  border-color: #6a7682;
+}
+
+.vdp-datepicker__calendar {
+  -webkit-box-shadow: 0 7px 14px 0 rgba(50, 50, 93, .01), 0 3px 6px 0 rgba(0, 0, 0, .05);
+          box-shadow: 0 7px 14px 0 rgba(50, 50, 93, .01), 0 3px 6px 0 rgba(0, 0, 0, .05);
+}
+
+.vdp-datepicker__calendar .cell:not(.blank):not(.disabled).day:hover,
+.vdp-datepicker__calendar .cell:not(.blank):not(.disabled).month:hover,
+.vdp-datepicker__calendar .cell:not(.blank):not(.disabled).year:hover {
+  border-color: #fe5f55 !important;
+}
+
+.vdp-datepicker__calendar .cell.selected,
+.vdp-datepicker__calendar .cell.selected.highlighted,
+.vdp-datepicker__calendar .cell.selected:hover {
+  background: #fe5f55 !important;
+  color: #f9f9ff !important;
+}
+
 .card {
-  background-color: #f9f9ff;
+  background-color: #fff;
   border-radius: .25rem;
   -webkit-box-shadow: 0 7px 14px 0 rgba(50, 50, 93, .01), 0 3px 6px 0 rgba(0, 0, 0, .05);
           box-shadow: 0 7px 14px 0 rgba(50, 50, 93, .01), 0 3px 6px 0 rgba(0, 0, 0, .05);
@@ -608,10 +643,63 @@ a {
   width: 100%;
 }
 
+.table th {
+  font-weight: 600;
+}
+
+.table td,
+.table th {
+  font-size: .875rem;
+}
+
 .table td input,
 .table th input {
   width: 100%;
   text-align: inherit;
+}
+
+.btn {
+  background-color: #fff;
+  color: #495867;
+  -webkit-box-shadow: 0 0 0 1px rgba(50, 50, 93, .1), 0 2px 5px 0 rgba(50, 50, 93, .08), 0 1px 1.5px 0 rgba(0, 0, 0, .07), 0 1px 2px 0 rgba(0, 0, 0, .08), 0 0 0 0 transparent;
+          box-shadow: 0 0 0 1px rgba(50, 50, 93, .1), 0 2px 5px 0 rgba(50, 50, 93, .08), 0 1px 1.5px 0 rgba(0, 0, 0, .07), 0 1px 2px 0 rgba(0, 0, 0, .08), 0 0 0 0 transparent;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+  border-radius: .25rem;
+  font-size: .875rem;
+}
+
+.btn.btn-sm {
+  padding: 0.25rem;
+}
+
+.btn.btn-primary {
+  background-color: #fe5f55;
+  color: #fff;
+}
+
+.btn .material-icons {
+  float: left;
+  height: 100%;
+  font-size: 16px;
+}
+
+.btn-group {
+  float: right;
+}
+
+.btn-group .btn {
+  float: right;
+}
+
+.btn-group .btn:last-of-type {
+  border-radius: 0.25rem 0 0 0.25rem;
+}
+
+.btn-group .btn:first-of-type {
+  border-radius: 0 0.25rem 0.25rem 0;
 }
 
 .container {
@@ -832,12 +920,12 @@ a {
 
 .text-grey-lightest,
 .hover\:text-grey-lightest:hover {
-  color: #7a8590;
+  color: #dde6ee;
 }
 
 .text-white,
 .hover\:text-white:hover {
-  color: #f9f9ff;
+  color: #fff;
 }
 
 .text-off-white,
@@ -1081,12 +1169,12 @@ a {
 
 .bg-grey-lightest,
 .hover\:bg-grey-lightest:hover {
-  background-color: #7a8590;
+  background-color: #dde6ee;
 }
 
 .bg-white,
 .hover\:bg-white:hover {
-  background-color: #f9f9ff;
+  background-color: #fff;
 }
 
 .bg-off-white,
@@ -1323,12 +1411,12 @@ a {
 
 .border-grey-lightest,
 .hover\:border-grey-lightest:hover {
-  border-color: #7a8590;
+  border-color: #dde6ee;
 }
 
 .border-white,
 .hover\:border-white:hover {
-  border-color: #f9f9ff;
+  border-color: #fff;
 }
 
 .border-off-white,
@@ -3045,12 +3133,12 @@ a {
 
   .sm\:text-grey-lightest,
   .sm\:hover\:text-grey-lightest:hover {
-    color: #7a8590;
+    color: #dde6ee;
   }
 
   .sm\:text-white,
   .sm\:hover\:text-white:hover {
-    color: #f9f9ff;
+    color: #fff;
   }
 
   .sm\:text-off-white,
@@ -3294,12 +3382,12 @@ a {
 
   .sm\:bg-grey-lightest,
   .sm\:hover\:bg-grey-lightest:hover {
-    background-color: #7a8590;
+    background-color: #dde6ee;
   }
 
   .sm\:bg-white,
   .sm\:hover\:bg-white:hover {
-    background-color: #f9f9ff;
+    background-color: #fff;
   }
 
   .sm\:bg-off-white,
@@ -3536,12 +3624,12 @@ a {
 
   .sm\:border-grey-lightest,
   .sm\:hover\:border-grey-lightest:hover {
-    border-color: #7a8590;
+    border-color: #dde6ee;
   }
 
   .sm\:border-white,
   .sm\:hover\:border-white:hover {
-    border-color: #f9f9ff;
+    border-color: #fff;
   }
 
   .sm\:border-off-white,
@@ -5259,12 +5347,12 @@ a {
 
   .md\:text-grey-lightest,
   .md\:hover\:text-grey-lightest:hover {
-    color: #7a8590;
+    color: #dde6ee;
   }
 
   .md\:text-white,
   .md\:hover\:text-white:hover {
-    color: #f9f9ff;
+    color: #fff;
   }
 
   .md\:text-off-white,
@@ -5508,12 +5596,12 @@ a {
 
   .md\:bg-grey-lightest,
   .md\:hover\:bg-grey-lightest:hover {
-    background-color: #7a8590;
+    background-color: #dde6ee;
   }
 
   .md\:bg-white,
   .md\:hover\:bg-white:hover {
-    background-color: #f9f9ff;
+    background-color: #fff;
   }
 
   .md\:bg-off-white,
@@ -5750,12 +5838,12 @@ a {
 
   .md\:border-grey-lightest,
   .md\:hover\:border-grey-lightest:hover {
-    border-color: #7a8590;
+    border-color: #dde6ee;
   }
 
   .md\:border-white,
   .md\:hover\:border-white:hover {
-    border-color: #f9f9ff;
+    border-color: #fff;
   }
 
   .md\:border-off-white,
@@ -7473,12 +7561,12 @@ a {
 
   .lg\:text-grey-lightest,
   .lg\:hover\:text-grey-lightest:hover {
-    color: #7a8590;
+    color: #dde6ee;
   }
 
   .lg\:text-white,
   .lg\:hover\:text-white:hover {
-    color: #f9f9ff;
+    color: #fff;
   }
 
   .lg\:text-off-white,
@@ -7722,12 +7810,12 @@ a {
 
   .lg\:bg-grey-lightest,
   .lg\:hover\:bg-grey-lightest:hover {
-    background-color: #7a8590;
+    background-color: #dde6ee;
   }
 
   .lg\:bg-white,
   .lg\:hover\:bg-white:hover {
-    background-color: #f9f9ff;
+    background-color: #fff;
   }
 
   .lg\:bg-off-white,
@@ -7964,12 +8052,12 @@ a {
 
   .lg\:border-grey-lightest,
   .lg\:hover\:border-grey-lightest:hover {
-    border-color: #7a8590;
+    border-color: #dde6ee;
   }
 
   .lg\:border-white,
   .lg\:hover\:border-white:hover {
-    border-color: #f9f9ff;
+    border-color: #fff;
   }
 
   .lg\:border-off-white,
@@ -9687,12 +9775,12 @@ a {
 
   .xl\:text-grey-lightest,
   .xl\:hover\:text-grey-lightest:hover {
-    color: #7a8590;
+    color: #dde6ee;
   }
 
   .xl\:text-white,
   .xl\:hover\:text-white:hover {
-    color: #f9f9ff;
+    color: #fff;
   }
 
   .xl\:text-off-white,
@@ -9936,12 +10024,12 @@ a {
 
   .xl\:bg-grey-lightest,
   .xl\:hover\:bg-grey-lightest:hover {
-    background-color: #7a8590;
+    background-color: #dde6ee;
   }
 
   .xl\:bg-white,
   .xl\:hover\:bg-white:hover {
-    background-color: #f9f9ff;
+    background-color: #fff;
   }
 
   .xl\:bg-off-white,
@@ -10178,12 +10266,12 @@ a {
 
   .xl\:border-grey-lightest,
   .xl\:hover\:border-grey-lightest:hover {
-    border-color: #7a8590;
+    border-color: #dde6ee;
   }
 
   .xl\:border-white,
   .xl\:hover\:border-white:hover {
-    border-color: #f9f9ff;
+    border-color: #fff;
   }
 
   .xl\:border-off-white,

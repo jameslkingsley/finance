@@ -10,6 +10,16 @@ use Illuminate\Http\Request;
 class WeekController extends Controller
 {
     /**
+     * Constructor method.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -38,12 +48,19 @@ class WeekController extends Controller
     public function store(Request $request)
     {
         $week = Week::firstOrCreate([
+            'user_id' => auth()->user()->id,
             'ending' => Carbon::parse($request->ending)
         ]);
 
         $week->items()->delete();
 
         foreach ($request->items as $item) {
+            unset($item['total']);
+
+            if (!$item['title'] || !$item['rate']) {
+                continue;
+            }
+
             $week->items()->save(
                 new WeekItem($item)
             );

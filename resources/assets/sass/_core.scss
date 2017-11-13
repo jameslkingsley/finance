@@ -1,7 +1,36 @@
+* {
+    outline: 0 !important;
+}
+
 body {
     @apply bg-off-white h-screen font-sans text-grey leading-normal;
 }
 
 a {
     @apply text-brand;
+}
+
+input, textarea {
+    @apply p-1 rounded border border-grey-lightest;
+
+    &:focus {
+        @apply border-grey-lighter;
+    }
+}
+
+.vdp-datepicker__calendar {
+    @apply shadow-lg;
+}
+
+.vdp-datepicker__calendar .cell:not(.blank):not(.disabled).day:hover,
+.vdp-datepicker__calendar .cell:not(.blank):not(.disabled).month:hover,
+.vdp-datepicker__calendar .cell:not(.blank):not(.disabled).year:hover {
+    border-color: config('colors.brand') !important;
+}
+
+.vdp-datepicker__calendar .cell.selected,
+.vdp-datepicker__calendar .cell.selected.highlighted,
+.vdp-datepicker__calendar .cell.selected:hover {
+    background: config('colors.brand') !important;
+    color: config('colors.white') !important;
 }

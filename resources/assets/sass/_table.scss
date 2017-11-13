@@ -1,7 +1,13 @@
 .table {
     @apply w-full;
 
+    th {
+        font-weight: 600;
+    }
+
     td, th {
+        @apply text-sm;
+
         input {
             @apply w-full;
             text-align: inherit;
