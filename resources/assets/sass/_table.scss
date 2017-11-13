@@ -1,0 +1,10 @@
+.table {
+    @apply w-full;
+
+    td, th {
+        input {
+            @apply w-full;
+            text-align: inherit;
+        }
+    }
+}
