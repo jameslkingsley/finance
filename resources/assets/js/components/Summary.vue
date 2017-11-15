@@ -8,7 +8,7 @@
         <div class="md:w-1/4 mx-auto text-center">
             <span class="inline-block w-full text-base text-grey-lightest">Goal &middot; {{ goalCompletion }}%</span>
             <span class="inline-block w-full text-3xl" @click="startChangingGoal">
-                <span v-if="!changingGoal">{{ stats.goal | currency }}</span>
+                <span v-if="!changingGoal">{{ goalAmount | currency }}</span>
                 <span v-if="changingGoal"><input v-model="stats.goal" @blur="changeGoal"></span>
             </span>
         </div>
@@ -31,6 +31,10 @@
                 }
 
                 return Math.ceil((this.stats.income / this.stats.goal) * 100);
+            },
+
+            goalAmount() {
+                return this.stats.goal ? this.stats.goal : 0;
             }
         },
 
