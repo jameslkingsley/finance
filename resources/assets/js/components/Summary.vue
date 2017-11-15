@@ -7,7 +7,10 @@
 
         <div class="md:w-1/4 mx-auto text-center" v-if="stats.goal">
             <span class="inline-block w-full text-base text-grey-lightest">Goal &middot; {{ goalCompletion }}%</span>
-            <span class="inline-block w-full text-3xl">{{ stats.goal | currency }}</span>
+            <span class="inline-block w-full text-3xl" @click="startChangingGoal">
+                <span v-if="!changingGoal">{{ stats.goal | currency }}</span>
+                <span v-if="changingGoal"><input v-model="stats.goal" @blur="changeGoal"></span>
+            </span>
         </div>
     </div>
 </template>
@@ -16,7 +19,8 @@
     export default {
         data() {
             return {
-                stats: null
+                stats: null,
+                changingGoal: false
             };
         },
 
@@ -34,6 +38,17 @@
             fetch() {
                 ajax.get('/api/summary')
                     .then(r => this.stats = r.data);
+            },
+
+            startChangingGoal() {
+                this.changingGoal = true;
+            },
+
+            changeGoal() {
+                ajax.put('/api/goal', { amount: this.stats.goal })
+                    .then(r => {
+                        this.changingGoal = false;
+                    });
             }
         },
 
