@@ -1,12 +1,12 @@
 <template>
     <div class="flex flex-wrap" v-if="stats">
         <div class="md:w-1/4 mx-auto text-center">
-            <span class="inline-block w-full text-base text-grey-lighter">Income</span>
+            <span class="inline-block w-full text-base text-grey-lightest">Income</span>
             <span class="inline-block w-full text-3xl">{{ stats.income | currency }}</span>
         </div>
 
         <div class="md:w-1/4 mx-auto text-center" v-if="stats.goal">
-            <span class="inline-block w-full text-base text-grey-lighter">Goal &middot; {{ goalCompletion }}%</span>
+            <span class="inline-block w-full text-base text-grey-lightest">Goal &middot; {{ goalCompletion }}%</span>
             <span class="inline-block w-full text-3xl">{{ stats.goal | currency }}</span>
         </div>
     </div>
@@ -39,6 +39,8 @@
 
         created() {
             this.fetch();
+
+            EventBus.listen('WeekSaved', this.fetch);
         }
     }
 </script>

@@ -32,7 +32,7 @@ var colors = {
   'grey': '#495867',
   'grey-light': '#596774',
   'grey-lighter': '#6A7682',
-  'grey-lightest': '#dde6ee',
+  'grey-lightest': '#adb9c6',
   'white': '#FFF',
   'off-white': '#f1f5f9',
 }

@@ -87,14 +87,14 @@
 
                 defaultItem: {
                     title: '',
-                    rate: 0,
-                    sun: 0,
-                    mon: 0,
-                    tue: 0,
-                    wed: 0,
-                    thu: 0,
-                    fri: 0,
-                    sat: 0,
+                    rate: null,
+                    sun: null,
+                    mon: null,
+                    tue: null,
+                    wed: null,
+                    thu: null,
+                    fri: null,
+                    sat: null,
                 }
             };
         },
@@ -134,7 +134,7 @@
             save() {
                 ajax.post(`/api/weeks`, this.week)
                     .then(r => {
-                        //
+                        EventBus.fire('WeekSaved');
                     });
             },
 
@@ -152,14 +152,14 @@
             addRow() {
                 this.week.items.push({
                     title: '',
-                    rate: 0,
-                    sun: 0,
-                    mon: 0,
-                    tue: 0,
-                    wed: 0,
-                    thu: 0,
-                    fri: 0,
-                    sat: 0,
+                    rate: null,
+                    sun: null,
+                    mon: null,
+                    tue: null,
+                    wed: null,
+                    thu: null,
+                    fri: null,
+                    sat: null,
                 });
             },
 

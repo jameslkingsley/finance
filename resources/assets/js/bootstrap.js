@@ -13,4 +13,6 @@ if (token) {
 
 window.Vue = require('vue');
 
+require('./event');
+
 window.moment = require('moment');
