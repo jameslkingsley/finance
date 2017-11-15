@@ -5,7 +5,7 @@
             <span class="inline-block w-full text-3xl">{{ stats.income | currency }}</span>
         </div>
 
-        <div class="md:w-1/4 mx-auto text-center" v-if="stats.goal">
+        <div class="md:w-1/4 mx-auto text-center">
             <span class="inline-block w-full text-base text-grey-lightest">Goal &middot; {{ goalCompletion }}%</span>
             <span class="inline-block w-full text-3xl" @click="startChangingGoal">
                 <span v-if="!changingGoal">{{ stats.goal | currency }}</span>
