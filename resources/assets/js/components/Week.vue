@@ -24,13 +24,13 @@
                         <th align="left" width="30"></th>
                         <th align="left">Description</th>
                         <th align="right" width="60">Rate</th>
-                        <th align="right" width="60" v-for="day in days" v-text="day"></th>
+                        <th align="right" width="60" v-for="(day, index) in days" :key="index" v-text="day"></th>
                         <th align="right" width="75">Total</th>
                     </tr>
                 </thead>
 
                 <tbody>
-                    <tr v-for="(item, index) in week.items">
+                    <tr v-for="(item, index) in week.items" :key="index">
                         <td align="left">
                             <button class="btn btn-sm" @click.prevent="deleteRow(index)">
                                 <i class="material-icons">delete</i>
@@ -45,7 +45,7 @@
                             <input v-model="item.rate" @focus="$event.target.select()" placeholder="Rate">
                         </td>
 
-                        <td align="right" width="60" v-for="day in days">
+                        <td align="right" width="60" v-for="(day, index) in days" :key="index">
                             <input @focus="$event.target.select()" v-model="item[day.toLowerCase()]" placeholder="Hours">
                         </td>
 

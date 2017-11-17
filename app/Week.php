@@ -2,7 +2,6 @@
 
 namespace App;
 
-use App\WeekItem;
 use App\Traits\BelongsToUser;
 use Illuminate\Database\Eloquent\Model;
 
@@ -29,7 +28,7 @@ class Week extends Model
     /**
      * Gets the week items.
      *
-     * @return Illuminate\Database\Eloquent\Relations\HasMany
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function items()
     {
