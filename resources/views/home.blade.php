@@ -30,7 +30,7 @@
     </div>
 
     <div class="flex flex-wrap items-center">
-        <div class="flex-1 mr-3">
+        <div class="flex-1 self-stretch mr-3">
             <span class="text-left uppercase font-semibold w-full text-sm text-grey-lightest">
                 Monthly Expenses
             </span>
@@ -40,10 +40,14 @@
             </div>
         </div>
 
-        <div class="flex-1 ml-3">
-            {{-- <div class="card w-full">
+        <div class="flex-1 self-stretch ml-3">
+            <span class="text-left uppercase font-semibold w-full text-sm text-grey-lightest">
+                This Month's Purchases
+            </span>
+
+            <div class="card w-full mt-2">
                 <f-purchases></f-purchases>
-            </div> --}}
+            </div>
         </div>
     </div>
 @endsection

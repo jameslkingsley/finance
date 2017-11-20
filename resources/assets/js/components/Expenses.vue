@@ -1,10 +1,14 @@
 <template>
     <div>
         <button class="btn float-right mb-4 text-xs" @click.prevent="addExpense">
-            Add Expense
+            New Expense
         </button>
 
-        <table class="table">
+        <span class="text-grey-lightest text-base" v-show="!items.length">
+            No expenses each month
+        </span>
+
+        <table class="table" v-show="items.length">
             <thead>
                 <tr>
                     <th align="left" width="30"></th>

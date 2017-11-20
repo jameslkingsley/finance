@@ -13,6 +13,10 @@ window.formatAsCurrency = value => {
 
 Vue.filter('currency', window.formatAsCurrency);
 
+Vue.filter('date', value => {
+    return moment(value).format('DD/MM/YY');
+});
+
 Vue.component('f-week', require('./components/Week.vue'));
 Vue.component('f-purchases', require('./components/Purchases.vue'));
 Vue.component('f-expenses', require('./components/Expenses.vue'));

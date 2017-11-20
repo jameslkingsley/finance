@@ -8,13 +8,23 @@ use Illuminate\Http\Request;
 class PurchaseController extends Controller
 {
     /**
+     * Constructor method.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        //
+        return Purchase::thisMonth();
     }
 
     /**
@@ -35,7 +45,14 @@ class PurchaseController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $attributes = $request->validate([
+            'description' => 'required',
+            'amount' => 'required|numeric',
+        ]);
+
+        auth()->user()->purchases()->save(
+            new Purchase($attributes)
+        );
     }
 
     /**
@@ -80,6 +97,6 @@ class PurchaseController extends Controller
      */
     public function destroy(Purchase $purchase)
     {
-        //
+        $purchase->delete();
     }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Week;
 use App\Expense;
+use App\Purchase;
 use Illuminate\Http\Request;
 
 class SummaryController extends Controller
@@ -17,12 +18,13 @@ class SummaryController extends Controller
     {
         $income = Week::income();
         $expenses = Expense::all()->sum('amount');
+        $purchases = Purchase::thisMonth()->sum('amount');
         $goal = auth()->user()->goal;
         $averageWeeklyIncome = Week::all()->average(function ($week) {
             return $week->total();
         });
 
-        return response()->json(compact('income', 'goal', 'expenses', 'averageWeeklyIncome'));
+        return response()->json(compact('income', 'goal', 'expenses', 'averageWeeklyIncome', 'purchases'));
     }
 
     /**

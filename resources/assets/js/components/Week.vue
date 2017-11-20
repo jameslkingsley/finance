@@ -9,7 +9,7 @@
         </div>
 
         <div class="md:w-1/3 text-right">
-            <button class="btn mr-3" @click.prevent="addRow">Add Row</button>
+            <button class="btn mr-3" @click.prevent="addRow">New Row</button>
 
             <div class="btn-group">
                 <button class="btn" @click.prevent="nextWeek">&gt;</button>
@@ -134,7 +134,7 @@
             save() {
                 ajax.post(`/api/weeks`, this.week)
                     .then(r => {
-                        EventBus.fire('WeekSaved');
+                        EventBus.fire('Updated');
                     });
             },
 

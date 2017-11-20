@@ -58,7 +58,7 @@
         created() {
             this.fetch().then(this.createChart);
 
-            EventBus.listen('WeekSaved', e => {
+            EventBus.listen('Updated', e => {
                 this.fetch().then(r => {
                     this.chart.update_values(this.getFormattedWeeks().datasets, this.getFormattedWeeks().labels);
                 });
