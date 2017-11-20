@@ -29,7 +29,7 @@ class WeekItem extends Model
     {
         $total = 0;
 
-        foreach (['mon','tue','wed','thu','fri','sat','sun'] as $day) {
+        foreach (['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'] as $day) {
             $total += $this->rate * $this->{$day};
         }
 

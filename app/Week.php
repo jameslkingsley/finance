@@ -2,12 +2,11 @@
 
 namespace App;
 
-use App\Traits\BelongsToUser;
 use Illuminate\Database\Eloquent\Model;
 
 class Week extends Model
 {
-    use BelongsToUser;
+    use Traits\BelongsToUser;
 
     /**
      * Guarded attributes.

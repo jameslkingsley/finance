@@ -1,10 +1,10 @@
 <template>
     <div class="flex flex-wrap">
         <div class="md:w-1/3 text-left">
-            <datepicker placeholder="Search by date" format="dd/MM/yyyy"></datepicker>
+            <!-- <datepicker placeholder="Search by date" format="dd/MM/yyyy"></datepicker> -->
         </div>
 
-        <div class="md:w-1/3 text-center font-semibold">
+        <div class="md:w-1/3 text-center text-lg font-semibold">
             {{ title }}
         </div>
 
