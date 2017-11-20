@@ -53,7 +53,8 @@ class Week extends Model
     {
         $income = 0;
 
-        static::whereMonth('ending', '=', now()->month)->get()
+        auth()->user()->weeks()
+            ->whereMonth('ending', '=', now()->month)->get()
             ->each(function ($week) use (&$income) {
                 $income += $week->total();
             });

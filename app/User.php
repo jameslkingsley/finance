@@ -53,4 +53,14 @@ class User extends Authenticatable
     {
         return $this->hasMany(Purchase::class);
     }
+
+    /**
+     * Gets the users weeks.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function weeks()
+    {
+        return $this->hasMany(Week::class);
+    }
 }

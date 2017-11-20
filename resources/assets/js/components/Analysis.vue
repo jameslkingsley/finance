@@ -1,5 +1,11 @@
 <template>
-    <div v-if="this.weeks.length > 1" ref="chart"></div>
+    <div>
+        <div v-if="this.weeks.length > 1" ref="chart"></div>
+
+        <span v-if="this.weeks.length < 2" class="text-grey-lightest">
+            Not enough data yet
+        </span>
+    </div>
 </template>
 
 <script>

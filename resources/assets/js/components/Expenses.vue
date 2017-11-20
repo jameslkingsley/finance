@@ -72,14 +72,20 @@
 
                     if (amount !== null) {
                         ajax.post('/api/expenses', { description, amount })
-                            .then(this.fetch);
+                            .then(r => {
+                                this.fetch();
+                                EventBus.fire('Updated');
+                            });
                     }
                 }
             },
 
             deleteExpense(id) {
                 ajax.delete(`/api/expenses/${id}`)
-                    .then(this.fetch);
+                    .then(r => {
+                        this.fetch();
+                        EventBus.fire('Updated');
+                    });
             }
         },
 

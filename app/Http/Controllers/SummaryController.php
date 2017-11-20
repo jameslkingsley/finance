@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Week;
-use App\Expense;
 use App\Purchase;
 use Illuminate\Http\Request;
 
@@ -17,10 +16,10 @@ class SummaryController extends Controller
     public function index()
     {
         $income = Week::income();
-        $expenses = Expense::all()->sum('amount');
+        $expenses = auth()->user()->expenses->sum('amount');
         $purchases = Purchase::thisMonth()->sum('amount');
         $goal = auth()->user()->goal;
-        $averageWeeklyIncome = Week::all()->average(function ($week) {
+        $averageWeeklyIncome = auth()->user()->weeks->average(function ($week) {
             return $week->total();
         });
 

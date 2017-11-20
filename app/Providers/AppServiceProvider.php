@@ -17,7 +17,9 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Route::bind('week', function ($value) {
-            return Week::where('ending', Carbon::parse($value))->first();
+            return auth()->user()->weeks()
+                ->where('ending', Carbon::parse($value))
+                ->first();
         });
     }
 

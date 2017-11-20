@@ -25,7 +25,8 @@
             </span>
 
             <span class="inline-block w-full text-sm text-grey-lightest">
-                <span class="text-center mx-auto w-full">{{ goalTimeLeft }} weeks to go</span>
+                <span class="text-center mx-auto w-full" v-if="goalTimeLeft">{{ goalTimeLeft }} weeks to go</span>
+                <span class="text-center mx-auto w-full" v-if="!goalTimeLeft">Not enough data</span>
             </span>
         </div>
     </div>
@@ -57,10 +58,18 @@
             },
 
             goalTimeLeft() {
+                if (!this.stats.averageWeeklyIncome) {
+                    return 0;
+                }
+
                 return Math.ceil(this.goalAmount / this.stats.averageWeeklyIncome);
             },
 
             purchasePercentage() {
+                if (!this.stats.purchases || !this.netIncome) {
+                    return 0;
+                }
+
                 return Math.ceil((this.stats.purchases / this.netIncome) * 100);
             }
         },

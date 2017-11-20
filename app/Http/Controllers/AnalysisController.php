@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Week;
-
 class AnalysisController extends Controller
 {
     /**
@@ -13,7 +11,7 @@ class AnalysisController extends Controller
      */
     public function index()
     {
-        $weeks = Week::all()->transform(function ($week) {
+        $weeks = auth()->user()->weeks->transform(function ($week) {
             $week->total = $week->total();
             return $week;
         });

@@ -24,7 +24,7 @@ class ExpensesController extends Controller
      */
     public function index()
     {
-        return Expense::all();
+        return auth()->user()->expenses;
     }
 
     /**
