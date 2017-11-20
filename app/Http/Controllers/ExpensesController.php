@@ -2,12 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Week;
 use App\Expense;
 use Illuminate\Http\Request;
 
-class SummaryController extends Controller
+class ExpensesController extends Controller
 {
+    /**
+     * Constructor method.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -15,14 +24,7 @@ class SummaryController extends Controller
      */
     public function index()
     {
-        $income = Week::income();
-        $expenses = Expense::all()->sum('amount');
-        $goal = auth()->user()->goal;
-        $averageWeeklyIncome = Week::all()->average(function ($week) {
-            return $week->total();
-        });
-
-        return response()->json(compact('income', 'goal', 'expenses', 'averageWeeklyIncome'));
+        return Expense::all();
     }
 
     /**
@@ -43,7 +45,14 @@ class SummaryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $attributes = $request->validate([
+            'description' => 'required',
+            'amount' => 'required|numeric',
+        ]);
+
+        auth()->user()->expenses()->save(
+            new Expense($attributes)
+        );
     }
 
     /**
@@ -86,8 +95,8 @@ class SummaryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Expense $expense)
     {
-        //
+        $expense->delete();
     }
 }

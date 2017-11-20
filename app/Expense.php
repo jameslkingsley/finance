@@ -12,4 +12,13 @@ class Expense extends Model
      * @var array
      */
     protected $guarded = [];
+
+    /**
+     * Casted attributes.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'amount' => 'float'
+    ];
 }

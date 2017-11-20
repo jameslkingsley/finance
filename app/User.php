@@ -33,4 +33,14 @@ class User extends Authenticatable
     protected $casts = [
         'goal' => 'float'
     ];
+
+    /**
+     * Gets the users expenses.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function expenses()
+    {
+        return $this->hasMany(Expense::class);
+    }
 }
