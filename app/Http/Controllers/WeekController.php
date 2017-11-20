@@ -54,16 +54,20 @@ class WeekController extends Controller
 
         $week->items()->delete();
 
-        foreach ($request->items as $item) {
-            unset($item['total']);
+        if (count($request->items) > 0) {
+            foreach ($request->items as $item) {
+                unset($item['total']);
 
-            if (!$item['title'] || !$item['rate']) {
-                continue;
+                if (!$item['title'] || !$item['rate']) {
+                    continue;
+                }
+
+                $week->items()->save(
+                    new WeekItem($item)
+                );
             }
-
-            $week->items()->save(
-                new WeekItem($item)
-            );
+        } else {
+            $week->delete();
         }
     }
 
