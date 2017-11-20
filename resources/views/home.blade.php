@@ -14,12 +14,36 @@
             This Week's Work
         </span>
 
-        <div class="card mb-6">
+        <div class="card mb-8">
             <f-week></f-week>
         </div>
+    </div>
 
-        {{-- <div class="card">
-            List of expenses with form to enter new data
-        </div> --}}
+    <div class="flex flex-wrap items-center">
+        <span class="text-left uppercase font-semibold w-full text-sm mb-2 text-grey-lightest">
+            Earnings Analysis
+        </span>
+
+        <div class="card w-full mb-8">
+            <f-analysis></f-analysis>
+        </div>
+    </div>
+
+    <div class="flex flex-wrap items-center">
+        <div class="flex-1 mr-3">
+            <span class="text-left uppercase font-semibold w-full text-sm text-grey-lightest">
+                Monthly Expenses
+            </span>
+
+            <div class="card w-full mt-2">
+                <f-expenses></f-expenses>
+            </div>
+        </div>
+
+        <div class="flex-1 ml-3">
+            {{-- <div class="card w-full">
+                <f-purchases></f-purchases>
+            </div> --}}
+        </div>
     </div>
 @endsection

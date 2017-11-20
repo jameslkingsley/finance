@@ -34,3 +34,7 @@ input, textarea {
     background: config('colors.brand') !important;
     color: config('colors.white') !important;
 }
+
+.chart-container > .title {
+    @apply text-lg;
+}

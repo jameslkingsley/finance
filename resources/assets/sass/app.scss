@@ -1,5 +1,7 @@
 @tailwind preflight;
 
+@import "node_modules/frappe-charts/dist/frappe-charts.min";
+
 // Components
 @import "core";
 @import "card";

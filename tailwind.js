@@ -25,6 +25,8 @@ var colors = {
   'brand-lighter': '#FE7C73',
   'brand-lightest': '#FE8A83',
 
+  'error': '#ff6d6d',
+
   'black': '#000',
   'grey-darkest': '#07080A',
   'grey-darker': '#14181D',
@@ -532,6 +534,9 @@ module.exports = {
     '4': '1rem',
     '6': '1.5rem',
     '8': '2rem',
+    '12': '4rem',
+    '16': '8rem',
+    '24': '12rem',
   },
 
 
