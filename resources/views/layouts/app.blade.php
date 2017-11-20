@@ -8,6 +8,7 @@
 
         <title>{{ config('app.name', 'Laravel') }}</title>
 
+        <link rel="icon" type="image/png" href="{{ url('/favicon.png') }}">
         <link href="{{ mix('css/app.css') }}" rel="stylesheet">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     </head>
@@ -19,7 +20,7 @@
                     <div class="flex items-center justify-center h-16">
                         <div class="mr-6">
                             <a href="{{ url('/') }}" class="no-underline font-semibold">
-                                {{ config('app.name', 'Laravel') }}
+                                <img class="float-left mt-1 mr-2 w-4 h-4" src="{{ url('/images/logo.png') }}"> {{ config('app.name', 'Laravel') }}
                             </a>
                         </div>
 
