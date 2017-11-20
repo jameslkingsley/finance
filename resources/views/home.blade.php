@@ -10,13 +10,7 @@
             <f-summary></f-summary>
         </div>
 
-        <span class="text-left uppercase font-semibold w-full text-sm mb-2 text-grey-lightest">
-            This Week's Work
-        </span>
-
-        <div class="card mb-8">
-            <f-week></f-week>
-        </div>
+        <f-week></f-week>
     </div>
 
     <div class="flex flex-wrap items-center">
@@ -31,23 +25,11 @@
 
     <div class="flex flex-wrap items-center">
         <div class="flex-1 self-stretch mr-3">
-            <span class="text-left uppercase font-semibold w-full text-sm text-grey-lightest">
-                Monthly Expenses
-            </span>
-
-            <div class="card w-full mt-2">
-                <f-expenses></f-expenses>
-            </div>
+            <f-expenses></f-expenses>
         </div>
 
         <div class="flex-1 self-stretch ml-3">
-            <span class="text-left uppercase font-semibold w-full text-sm text-grey-lightest">
-                This Month's Purchases
-            </span>
-
-            <div class="card w-full mt-2">
-                <f-purchases></f-purchases>
-            </div>
+            <f-purchases></f-purchases>
         </div>
     </div>
 @endsection

@@ -1,0 +1,36 @@
+.list {
+    @apply inline-block w-full pb-4;
+    
+    .list-item {
+        @apply inline-block w-full flex flex-wrap py-2 px-4 border-b border-off-white;
+
+        &:last-of-type {
+            @apply border-b-0 pb-0;
+        }
+
+        &.list-item-standout {
+            @apply font-semibold;
+        }
+
+        .list-item-title {
+            @apply w-2/3 text-base;
+
+            small {
+                @apply text-grey-lightest text-sm;
+
+                a {
+                    @apply cursor-pointer;
+                    color: inherit;
+
+                    &:hover {
+                        @apply underline;
+                    }
+                }
+            }
+        }
+
+        .list-item-amount {
+            @apply w-1/3 text-right;
+        }
+    }
+}

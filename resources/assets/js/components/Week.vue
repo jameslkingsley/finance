@@ -1,70 +1,60 @@
 <template>
-    <div class="flex flex-wrap">
-        <div class="md:w-1/3 text-left">
-            <!-- <datepicker placeholder="Search by date" format="dd/MM/yyyy"></datepicker> -->
-        </div>
+    <div class="w-full">
+        <span class="text-left uppercase font-semibold w-full text-sm text-grey-lightest">
+            This Week's Work &middot; {{ title }}
+            <a class="float-right text-grey-lightest opacity-50 hover:underline cursor-pointer pl-2" @click.prevent="nextWeek">&gt;</a>
+            <a class="float-right text-grey-lightest opacity-50 hover:underline cursor-pointer px-2" @click.prevent="previousWeek">&lt;</a>
+            <a class="float-right text-grey-lightest opacity-50 hover:underline cursor-pointer mr-1" @click.prevent="addRow">New Row</a>
+        </span>
 
-        <div class="md:w-1/3 text-center text-lg font-semibold">
-            {{ title }}
-        </div>
+        <div class="card w-full mb-8 mt-2">
+            <div class="flex flex-wrap">
+                <div class="w-full">
+                    <table class="table -mt-2">
+                        <thead>
+                            <tr>
+                                <th align="left">Description</th>
+                                <th align="left" width="30"></th>
+                                <th align="right" width="60">Rate</th>
+                                <th align="right" width="60" v-for="(day, index) in days" :key="index" v-text="day"></th>
+                                <th align="right" width="75">Total</th>
+                            </tr>
+                        </thead>
 
-        <div class="md:w-1/3 text-right">
-            <button class="btn mr-3" @click.prevent="addRow">New Row</button>
+                        <tbody>
+                            <tr v-for="(item, index) in week.items" :key="index">
+                                <td align="left">
+                                    <input v-model="item.title" placeholder="Description">
+                                </td>
 
-            <div class="btn-group">
-                <button class="btn" @click.prevent="nextWeek">&gt;</button>
-                <button class="btn" @click.prevent="previousWeek">&lt;</button>
-            </div>
-        </div>
+                                <td align="left">
+                                    <a @click.prevent="deleteRow(index)" class="text-xs text-grey-lightest hover:underline cursor-pointer">Delete</a>
+                                </td>
 
-        <div class="md:w-full mt-4 pt-2">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th align="left" width="30"></th>
-                        <th align="left">Description</th>
-                        <th align="right" width="60">Rate</th>
-                        <th align="right" width="60" v-for="(day, index) in days" :key="index" v-text="day"></th>
-                        <th align="right" width="75">Total</th>
-                    </tr>
-                </thead>
+                                <td align="right" width="60">
+                                    <input v-model="item.rate" @focus="$event.target.select()" placeholder="Rate">
+                                </td>
 
-                <tbody>
-                    <tr v-for="(item, index) in week.items" :key="index">
-                        <td align="left">
-                            <button class="btn btn-sm" @click.prevent="deleteRow(index)">
-                                <i class="material-icons">delete</i>
-                            </button>
-                        </td>
+                                <td align="right" width="60" v-for="(day, index) in days" :key="index">
+                                    <input @focus="$event.target.select()" v-model="item[day.toLowerCase()]" placeholder="Hours">
+                                </td>
 
-                        <td align="left">
-                            <input v-model="item.title" placeholder="Description">
-                        </td>
+                                <td align="right">
+                                    {{ getTotal(index) | currency }}
+                                </td>
+                            </tr>
 
-                        <td align="right" width="60">
-                            <input v-model="item.rate" @focus="$event.target.select()" placeholder="Rate">
-                        </td>
+                            <tr>
+                                <th colspan="10" align="right">Weekly Total</th>
+                                <th align="right">{{ weekTotal | currency }}</th>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
 
-                        <td align="right" width="60" v-for="(day, index) in days" :key="index">
-                            <input @focus="$event.target.select()" v-model="item[day.toLowerCase()]" placeholder="Hours">
-                        </td>
-
-                        <td align="right">
-                            {{ getTotal(index) | currency }}
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <th colspan="10" align="right">Weekly Total</th>
-                        <th align="right">{{ weekTotal | currency }}</th>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-
-        <div class="md:w-full mt-4">
-            <div class="md:w-full text-right mt-4">
-                <button class="btn btn-primary" @click.prevent="save">Save Changes</button>
+                <div class="w-full text-right mt-2">
+                    <button class="btn btn-primary" @click.prevent="save">Save Changes</button>
+                </div>
             </div>
         </div>
     </div>

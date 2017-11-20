@@ -1,42 +1,42 @@
 <template>
     <div>
-        <button class="btn float-right mb-4 text-xs" @click.prevent="newPurchase">
-            New Purchase
-        </button>
-
-        <span class="text-grey-lightest text-base" v-show="!purchases.length">
-            No purchases this month
+        <span class="text-left uppercase font-semibold w-full text-sm text-grey-lightest">
+            This Month's Purchases
+            <a class="float-right text-grey-lightest opacity-50 hover:underline cursor-pointer" @click.prevent="newPurchase">New Purchase</a>
         </span>
 
-        <table class="table" v-show="purchases.length">
-            <thead>
-                <tr>
-                    <th align="left" width="30"></th>
-                    <th align="left">Description</th>
-                    <th align="left" width="100">Date</th>
-                    <th align="right" width="60">Amount</th>
-                </tr>
-            </thead>
+        <div class="card p-0 w-full mt-2">
+            <div class="p-4" v-show="!purchases.length">
+                <span class="text-grey-lightest text-base">
+                    No purchases this month
+                </span>
+            </div>
 
-            <tbody>
-                <tr v-for="(purchase, index) in purchases" :key="index">
-                    <td align="left">
-                        <button class="btn btn-sm" @click.prevent="deletePurchase(purchase.id)">
-                            <i class="material-icons">delete</i>
-                        </button>
-                    </td>
-                    
-                    <td align="left">{{ purchase.description }}</td>
-                    <td align="left">{{ purchase.created_at | date }}</td>
-                    <td align="right">{{ purchase.amount | currency }}</td>
-                </tr>
+            <div class="list pt-2" v-show="purchases.length">
+                <div class="list-item" v-for="(purchase, index) in purchases" :key="index">
+                    <span class="list-item-title">
+                        {{ purchase.description }}<br />
 
-                <tr>
-                    <th colspan="3" align="right">Total</th>
-                    <th align="right">{{ total | currency }}</th>
-                </tr>
-            </tbody>
-        </table>
+                        <small>
+                            {{ purchase.created_at | date }}
+                            &middot;
+                            <a @click.prevent="deletePurchase(purchase.id)">Delete</a>
+                        </small>
+                    </span>
+
+                    <span class="list-item-amount">{{ purchase.amount | currency }}</span>
+                </div>
+
+                <div class="list-item list-item-standout">
+                    <span class="list-item-title">
+                        Total<br />
+                        <small>{{ purchases.length }} purchases</small>
+                    </span>
+
+                    <span class="list-item-amount">{{ total | currency }}</span>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 

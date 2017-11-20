@@ -34,7 +34,7 @@
                     values.push(week.total);
                 }
 
-                data.datasets.push({ values });
+                data.datasets.push({ values, color: 'red' });
 
                 return data;
             },
@@ -43,13 +43,12 @@
                 if (this.weeks.length < 2) return;
 
                 this.chart = new Chart({
-                    parent: this.$refs.chart,
-                    title: "Weekly Earnings",
-                    data: this.getFormattedWeeks(),
-                    type: 'line',
                     height: 250,
-                    heatline: 1,
+                    type: 'line',
                     region_fill: 1,
+                    title: "Weekly Earnings",
+                    parent: this.$refs.chart,
+                    data: this.getFormattedWeeks(),
                     format_tooltip_y: d => formatAsCurrency(d)
                 })
             }
@@ -60,7 +59,8 @@
 
             EventBus.listen('Updated', e => {
                 this.fetch().then(r => {
-                    this.chart.update_values(this.getFormattedWeeks().datasets, this.getFormattedWeeks().labels);
+                    let data = this.getFormattedWeeks();
+                    this.chart.update_values(data.datasets, data.labels);
                 });
             });
         }

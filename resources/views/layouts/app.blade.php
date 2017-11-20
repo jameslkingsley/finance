@@ -25,13 +25,13 @@
 
                         <div class="flex-1 text-right">
                             @guest
-                                <a class="no-underline hover:underline text-grey-darker pr-3 text-sm" href="{{ url('/login') }}">Login</a>
-                                <a class="no-underline hover:underline text-grey-darker text-sm" href="{{ url('/register') }}">Register</a>
+                                <a class="no-underline hover:underline text-grey-darker pr-3 text-sm font-semibold" href="{{ url('/login') }}">Login</a>
+                                <a class="no-underline hover:underline text-grey-darker text-sm font-semibold" href="{{ url('/register') }}">Register</a>
                             @else
-                                <span class="text-grey-darker text-sm pr-4">{{ Auth::user()->name }}</span>
+                                <span class="text-grey-darker text-sm pr-4 font-semibold">{{ Auth::user()->name }}</span>
 
                                 <a href="{{ route('logout') }}"
-                                    class="no-underline hover:underline text-grey-darker text-sm"
+                                    class="no-underline hover:underline text-grey-darker text-sm font-semibold"
                                     onclick="event.preventDefault();
                                     document.getElementById('logout-form').submit();">Logout</a>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

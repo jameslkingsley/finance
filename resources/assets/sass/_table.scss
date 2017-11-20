@@ -6,10 +6,11 @@
     }
 
     td, th {
-        @apply text-sm;
+        @apply text-sm text-grey relative;
+        padding: 0.4rem 0;
 
         input {
-            @apply w-full;
+            @apply text-grey w-full p-0 rounded-none border-0 absolute pin-y pin-x;
             text-align: inherit;
         }
     }
