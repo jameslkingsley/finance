@@ -38,3 +38,16 @@ input, textarea {
 .chart-container > .title {
     @apply text-lg;
 }
+
+.toasted-container.top-center {
+    top: 3rem !important;
+
+    .toasted {
+        top: 0 !important;
+
+        &.bubble {
+            @apply shadow-lg;
+            background: config('colors.brand') !important;
+        }
+    }
+}

@@ -61,10 +61,13 @@
 </template>
 
 <script>
+    import Toasted from 'vue-toasted';
     import Datepicker from 'vuejs-datepicker';
 
+    Vue.use(Toasted);
+
     export default {
-        components: { Datepicker },
+        components: { Toasted, Datepicker },
 
         data() {
             return {
@@ -125,6 +128,11 @@
                 ajax.post(`/api/weeks`, this.week)
                     .then(r => {
                         EventBus.fire('Updated');
+                        this.$toasted.show('Changes Saved', {
+                            theme: 'bubble',
+                            position: 'top-center',
+                            duration: 2000
+                        });
                     });
             },
 
