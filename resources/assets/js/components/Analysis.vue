@@ -9,7 +9,7 @@
 </template>
 
 <script>
-    import Chart from "frappe-charts/dist/frappe-charts.min.esm";
+    import Chart from 'frappe-charts/dist/frappe-charts.min.esm';
 
     export default {
         data() {
@@ -21,10 +21,9 @@
 
         methods: {
             fetch() {
-                return ajax.get('/api/analysis')
-                    .then(r => {
-                        this.weeks = r.data.weeks;
-                    });
+                return ajax.get('/api/analysis').then(r => {
+                    this.weeks = r.data.weeks;
+                });
             },
 
             getFormattedWeeks() {
@@ -52,11 +51,11 @@
                     height: 250,
                     type: 'line',
                     region_fill: 1,
-                    title: "Weekly Earnings",
+                    title: 'Weekly Earnings',
                     parent: this.$refs.chart,
                     data: this.getFormattedWeeks(),
                     format_tooltip_y: d => formatAsCurrency(d)
-                })
+                });
             }
         },
 
@@ -70,5 +69,5 @@
                 });
             });
         }
-    }
+    };
 </script>

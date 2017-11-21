@@ -50,7 +50,7 @@
                     return 0;
                 }
 
-                return Math.ceil((this.netIncome / this.stats.goal) * 100);
+                return Math.ceil(this.netIncome / this.stats.goal * 100);
             },
 
             goalAmount() {
@@ -70,24 +70,22 @@
                     return 0;
                 }
 
-                return Math.ceil((this.stats.purchases / this.netIncome) * 100);
+                return Math.ceil(this.stats.purchases / this.netIncome * 100);
             }
         },
 
         methods: {
             fetch() {
-                ajax.get('/api/summary')
-                    .then(r => this.stats = r.data);
+                ajax.get('/api/summary').then(r => (this.stats = r.data));
             },
 
             changeGoal() {
                 let amount = prompt('Amount');
 
                 if (amount !== null) {
-                    ajax.put('/api/goal', { amount })
-                        .then(r => {
-                            this.stats.goal = amount;
-                        });
+                    ajax.put('/api/goal', { amount }).then(r => {
+                        this.stats.goal = amount;
+                    });
                 }
             }
         },
@@ -97,5 +95,5 @@
 
             EventBus.listen('Updated', this.fetch);
         }
-    }
+    };
 </script>

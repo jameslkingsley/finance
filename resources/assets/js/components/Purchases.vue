@@ -18,8 +18,7 @@
                         {{ purchase.description }}<br />
 
                         <small>
-                            {{ purchase.created_at | date }}
-                            &middot;
+                            {{ purchase.created_at | date }} &middot;
                             <a @click.prevent="deletePurchase(purchase.id)">Delete</a>
                         </small>
                     </span>
@@ -62,8 +61,7 @@
 
         methods: {
             fetch() {
-                ajax.get('/api/purchases')
-                    .then(r => this.purchases = r.data);
+                ajax.get('/api/purchases').then(r => (this.purchases = r.data));
             },
 
             newPurchase() {
@@ -73,7 +71,11 @@
                     let amount = prompt('Amount');
 
                     if (amount !== null) {
-                        ajax.post('/api/purchases', { description, amount })
+                        ajax
+                            .post('/api/purchases', {
+                                description,
+                                amount
+                            })
                             .then(r => {
                                 this.fetch();
                                 EventBus.fire('Updated');
@@ -83,16 +85,15 @@
             },
 
             deletePurchase(id) {
-                ajax.delete(`/api/purchases/${id}`)
-                    .then(r => {
-                        this.fetch();
-                        EventBus.fire('Updated');
-                    });
+                ajax.delete(`/api/purchases/${id}`).then(r => {
+                    this.fetch();
+                    EventBus.fire('Updated');
+                });
             }
         },
 
         created() {
             this.fetch();
         }
-    }
+    };
 </script>

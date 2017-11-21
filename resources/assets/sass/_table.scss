@@ -5,7 +5,8 @@
         font-weight: 600;
     }
 
-    td, th {
+    td,
+    th {
         @apply text-sm text-grey relative;
         padding: 0.4rem 0;
 

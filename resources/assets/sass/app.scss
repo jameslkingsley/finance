@@ -1,12 +1,12 @@
 @tailwind preflight;
 
-@import "node_modules/frappe-charts/dist/frappe-charts.min";
+@import 'node_modules/frappe-charts/dist/frappe-charts.min';
 
 // Components
-@import "core";
-@import "card";
-@import "table";
-@import "button";
-@import "list";
+@import 'core';
+@import 'card';
+@import 'table';
+@import 'button';
+@import 'list';
 
 @tailwind utilities;

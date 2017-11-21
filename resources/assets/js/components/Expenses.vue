@@ -60,8 +60,7 @@
 
         methods: {
             fetch() {
-                ajax.get('/api/expenses')
-                    .then(r => this.items = r.data);
+                ajax.get('/api/expenses').then(r => (this.items = r.data));
             },
 
             addExpense() {
@@ -71,7 +70,11 @@
                     let amount = prompt('Amount');
 
                     if (amount !== null) {
-                        ajax.post('/api/expenses', { description, amount })
+                        ajax
+                            .post('/api/expenses', {
+                                description,
+                                amount
+                            })
                             .then(r => {
                                 this.fetch();
                                 EventBus.fire('Updated');
@@ -81,16 +84,15 @@
             },
 
             deleteExpense(id) {
-                ajax.delete(`/api/expenses/${id}`)
-                    .then(r => {
-                        this.fetch();
-                        EventBus.fire('Updated');
-                    });
+                ajax.delete(`/api/expenses/${id}`).then(r => {
+                    this.fetch();
+                    EventBus.fire('Updated');
+                });
             }
         },
 
         created() {
             this.fetch();
         }
-    }
+    };
 </script>

@@ -10,7 +10,8 @@ a {
     @apply text-brand;
 }
 
-input, textarea {
+input,
+textarea {
     @apply p-1 rounded border border-grey-lightest;
 
     &:focus {

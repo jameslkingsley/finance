@@ -75,7 +75,7 @@
 
                 week: {
                     ending: moment().day('Saturday'),
-                    items: [],
+                    items: []
                 },
 
                 defaultItem: {
@@ -87,7 +87,7 @@
                     wed: null,
                     thu: null,
                     fri: null,
-                    sat: null,
+                    sat: null
                 }
             };
         },
@@ -115,7 +115,8 @@
 
         methods: {
             fetch() {
-                ajax.get(`/api/weeks/${this.week.ending.format('D-M-YYYY')}`)
+                ajax
+                    .get(`/api/weeks/${this.week.ending.format('D-M-YYYY')}`)
                     .then(r => {
                         this.week = r.data;
                     })
@@ -125,15 +126,14 @@
             },
 
             save() {
-                ajax.post(`/api/weeks`, this.week)
-                    .then(r => {
-                        EventBus.fire('Updated');
-                        this.$toasted.show('Changes Saved', {
-                            theme: 'bubble',
-                            position: 'top-center',
-                            duration: 2000
-                        });
+                ajax.post(`/api/weeks`, this.week).then(r => {
+                    EventBus.fire('Updated');
+                    this.$toasted.show('Changes Saved', {
+                        theme: 'bubble',
+                        position: 'top-center',
+                        duration: 2000
                     });
+                });
             },
 
             getTotal(index) {
@@ -157,7 +157,7 @@
                     wed: null,
                     thu: null,
                     fri: null,
-                    sat: null,
+                    sat: null
                 });
             },
 
@@ -181,5 +181,5 @@
 
             this.fetch();
         }
-    }
+    };
 </script>
