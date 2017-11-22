@@ -2,13 +2,14 @@
     @apply w-full;
 
     th {
+        padding: 0 0 0.33rem 0 !important;
         font-weight: 600;
     }
 
     td,
     th {
         @apply text-xs text-grey relative;
-        padding: 0.4rem 0;
+        padding: 0.75rem 0;
 
         input {
             @apply text-grey w-full p-0 rounded-none border-0 absolute pin-y pin-x;
@@ -22,6 +23,7 @@
         td,
         th {
             @apply text-sm;
+            padding: 0.4rem 0;
         }
     }
 }

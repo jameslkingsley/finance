@@ -31,7 +31,8 @@ class User extends Authenticatable
      * @var array
      */
     protected $casts = [
-        'goal' => 'float'
+        'goal' => 'float',
+        'savings' => 'float'
     ];
 
     /**

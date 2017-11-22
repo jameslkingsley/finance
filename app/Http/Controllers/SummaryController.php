@@ -19,11 +19,12 @@ class SummaryController extends Controller
         $expenses = auth()->user()->expenses->sum('amount');
         $purchases = Purchase::thisMonth()->sum('amount');
         $goal = auth()->user()->goal;
+        $savings = auth()->user()->savings;
         $averageWeeklyIncome = auth()->user()->weeks->average(function ($week) {
             return $week->total();
         });
 
-        return response()->json(compact('income', 'goal', 'expenses', 'averageWeeklyIncome', 'purchases'));
+        return response()->json(compact('income', 'goal', 'expenses', 'averageWeeklyIncome', 'purchases', 'savings'));
     }
 
     /**

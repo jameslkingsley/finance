@@ -8,9 +8,10 @@ Route::get('/', 'HomeController@index')->name('home');
 Route::get('/api/weeks/{week}', 'WeekController@show');
 Route::post('/api/weeks', 'WeekController@store');
 
-// Summary & Goal
+// Summary, Goal & Savings
 Route::get('/api/summary', 'SummaryController@index');
 Route::put('/api/goal', 'GoalController@update');
+Route::put('/api/savings', 'SavingsController@update');
 
 // Analysis
 Route::get('/api/analysis', 'AnalysisController@index');

@@ -3,7 +3,9 @@ require('./bootstrap');
 window.formatAsCurrency = value => {
     if (value === null) return null;
 
-    let langage = (navigator.language || navigator.browserLanguage).split('-')[0];
+    let langage = (navigator.language || navigator.browserLanguage).split(
+        '-'
+    )[0];
 
     return value.toLocaleString(langage, {
         style: 'currency',

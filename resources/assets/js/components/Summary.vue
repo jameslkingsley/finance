@@ -17,6 +17,14 @@
             </span>
         </div>
 
+        <div class="md:w-1/4 mb-8 md:mb-0 mx-auto text-center">
+            <span class="inline-block w-full text-base text-grey-lightest">Savings</span>
+            <span class="inline-block w-full text-3xl" @click="changeSavings">{{ stats.savings | currency }}</span>
+            <span class="inline-block w-full text-sm text-grey-lightest">
+                <span class="text-center mx-auto w-full">{{ savingsToGo | currency }} to go</span>
+            </span>
+        </div>
+
         <div class="md:w-1/4 mx-auto text-center">
             <span class="inline-block w-full text-base text-grey-lightest">Goal &middot; {{ goalCompletion }}%</span>
 
@@ -25,8 +33,7 @@
             </span>
 
             <span class="inline-block w-full text-sm text-grey-lightest">
-                <span class="text-center mx-auto w-full" v-if="goalTimeLeft">{{ goalTimeLeft }} weeks to go</span>
-                <span class="text-center mx-auto w-full" v-if="!goalTimeLeft">Not enough data</span>
+                <span class="text-center mx-auto w-full">{{ goalTimeLeft }} weeks to go</span>
             </span>
         </div>
     </div>
@@ -45,12 +52,16 @@
                 return this.stats.income - this.stats.expenses;
             },
 
+            savingsToGo() {
+                return this.stats.goal - this.stats.savings;
+            },
+
             goalCompletion() {
-                if (!this.stats.goal || !this.stats.income) {
+                if (!this.stats.goal || !this.stats.savings) {
                     return 0;
                 }
 
-                return Math.ceil(this.netIncome / this.stats.goal * 100);
+                return Math.ceil(this.stats.savings / this.stats.goal * 100);
             },
 
             goalAmount() {
@@ -62,7 +73,10 @@
                     return 0;
                 }
 
-                return Math.ceil(this.goalAmount / this.stats.averageWeeklyIncome);
+                return Math.ceil(
+                    (this.goalAmount - this.stats.savings) /
+                        this.stats.averageWeeklyIncome
+                );
             },
 
             purchasePercentage() {
@@ -84,7 +98,17 @@
 
                 if (amount !== null) {
                     ajax.put('/api/goal', { amount }).then(r => {
-                        this.stats.goal = amount;
+                        this.stats.goal = Number(amount);
+                    });
+                }
+            },
+
+            changeSavings() {
+                let amount = prompt('Amount', this.stats.savings);
+
+                if (amount !== null) {
+                    ajax.put('/api/savings', { amount }).then(r => {
+                        this.stats.savings = Number(amount);
                     });
                 }
             }
