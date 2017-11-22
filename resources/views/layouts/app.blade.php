@@ -8,10 +8,15 @@
 
         <title>{{ config('app.name', 'Laravel') }}</title>
 
-        <link rel="manifest" href="{{ url('/manifest.json') }}">
-        <link rel="icon" type="image/png" href="{{ url('/favicon.png') }}">
         <link href="{{ mix('css/app.css') }}" rel="stylesheet">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+        <link rel="apple-touch-icon" sizes="192x192" href="{{ url('/images/app/192x192.png') }}">
+        <link rel="icon" type="image/png" href="{{ url('/images/app/64x64.png') }}" sizes="64x64">
+        <link rel="manifest" href="{{ url('/manifest.json') }}">
+        <link rel="mask-icon" href="{{ url('/images/app/192x192.png') }}" color="#FE5F55">
+        <link rel="shortcut icon" href="{{ url('/favicon.png') }}">
+        <meta name="theme-color" content="#FE5F55">
     </head>
 
     <body>
