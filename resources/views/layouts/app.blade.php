@@ -15,7 +15,7 @@
 
     <body>
         <div id="app">
-            <nav class="h-16 mb-4">
+            <nav class="h-16 mb-4 md:px-0 px-3">
                 <div class="container mx-auto h-full">
                     <div class="flex items-center justify-center h-16">
                         <div class="mr-6">
@@ -44,7 +44,7 @@
                 </div>
             </nav>
 
-            <main class="container mx-auto pb-12">
+            <main class="container mx-auto pb-12 md:px-0 px-3">
                 @yield('content')
             </main>
         </div>

@@ -1,37 +1,39 @@
 <template>
     <div class="w-full">
         <span class="text-left uppercase font-semibold w-full text-sm text-grey-lightest">
-            This Week's Work &middot; {{ title }}
+            This Week's Work &middot;
+            <span class="hidden md:inline-block">{{ title }}</span>
+            <span class="inline-block md:hidden">{{ week.ending | date }}</span>
             <a class="float-right text-grey-lightest opacity-50 hover:underline cursor-pointer pl-2" @click.prevent="nextWeek">&gt;</a>
             <a class="float-right text-grey-lightest opacity-50 hover:underline cursor-pointer px-2" @click.prevent="previousWeek">&lt;</a>
             <a class="float-right text-grey-lightest opacity-50 hover:underline cursor-pointer mr-1" @click.prevent="addRow">New Row</a>
         </span>
 
-        <div class="card w-full mb-8 mt-2">
+        <div class="card w-full mb-8 mt-2 md:p-4 p-2">
             <div class="flex flex-wrap">
                 <div class="w-full">
                     <table class="table -mt-2">
                         <thead>
                             <tr>
-                                <th align="left">Description</th>
-                                <th align="left" width="30"></th>
-                                <th align="right" width="60">Rate</th>
+                                <th align="left" class="hidden md:table-cell">Description</th>
+                                <th align="left" width="30" class="hidden md:table-cell"></th>
+                                <th align="right" width="60" class="text-left md:text-right">Rate</th>
                                 <th align="right" width="60" v-for="(day, index) in days" :key="index" v-text="day"></th>
-                                <th align="right" width="75">Total</th>
+                                <th align="right" width="75" class="hidden md:table-cell">Total</th>
                             </tr>
                         </thead>
 
                         <tbody>
                             <tr v-for="(item, index) in week.items" :key="index">
-                                <td align="left">
+                                <td align="left" class="hidden md:table-cell">
                                     <input v-model="item.title" placeholder="Description">
                                 </td>
 
-                                <td align="left">
+                                <td align="left" class="hidden md:table-cell">
                                     <a @click.prevent="deleteRow(index)" class="text-xs text-grey-lightest hover:underline cursor-pointer">Delete</a>
                                 </td>
 
-                                <td align="right" width="60">
+                                <td align="right" width="60" class="text-left md:text-right">
                                     <input v-model="item.rate" @focus="$event.target.select()" placeholder="Rate">
                                 </td>
 
@@ -39,13 +41,14 @@
                                     <input @focus="$event.target.select()" v-model="item[day.toLowerCase()]" placeholder="Hours">
                                 </td>
 
-                                <td align="right">
+                                <td align="right" class="hidden md:table-cell">
                                     {{ getTotal(index) | currency }}
                                 </td>
                             </tr>
 
                             <tr>
-                                <th colspan="10" align="right">Weekly Total</th>
+                                <th colspan="10" align="right" class="hidden md:table-cell">Weekly Total</th>
+                                <th colspan="7" align="right" class="table-cell md:hidden">Weekly Total</th>
                                 <th align="right">{{ weekTotal | currency }}</th>
                             </tr>
                         </tbody>

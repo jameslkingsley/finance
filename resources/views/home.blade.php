@@ -18,17 +18,17 @@
             Earnings Analysis
         </span>
 
-        <div class="card w-full mb-8">
+        <div class="card w-full mb-8 md:p-4 p-0">
             <f-analysis></f-analysis>
         </div>
     </div>
 
     <div class="flex flex-wrap items-center">
-        <div class="flex-1 self-stretch mr-3">
+        <div class="w-full md:w-auto md:flex-1 self-stretch md:mr-3 md:mb-0 mb-8">
             <f-expenses></f-expenses>
         </div>
 
-        <div class="flex-1 self-stretch ml-3">
+        <div class="w-full md:w-auto md:flex-1 self-stretch md:ml-3">
             <f-purchases></f-purchases>
         </div>
     </div>

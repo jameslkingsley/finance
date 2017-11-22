@@ -1,6 +1,6 @@
 <template>
     <div class="flex flex-wrap" v-if="stats">
-        <div class="md:w-1/4 mx-auto text-center">
+        <div class="md:w-1/4 mb-8 md:mb-0 mx-auto text-center">
             <span class="inline-block w-full text-base text-grey-lightest">Income</span>
             <span class="inline-block w-full text-3xl">{{ netIncome | currency }}</span>
             <span class="inline-block w-full text-sm text-grey-lightest">
@@ -9,7 +9,7 @@
             </span>
         </div>
 
-        <div class="md:w-1/4 mx-auto text-center">
+        <div class="md:w-1/4 mb-8 md:mb-0 mx-auto text-center">
             <span class="inline-block w-full text-base text-grey-lightest">Purchases</span>
             <span class="inline-block w-full text-3xl">{{ stats.purchases | currency }}</span>
             <span class="inline-block w-full text-sm text-grey-lightest">
