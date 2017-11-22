@@ -8,6 +8,7 @@
 
         <title>{{ config('app.name', 'Laravel') }}</title>
 
+        <link rel="manifest" href="{{ url('/manifest.json') }}">
         <link rel="icon" type="image/png" href="{{ url('/favicon.png') }}">
         <link href="{{ mix('css/app.css') }}" rel="stylesheet">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">

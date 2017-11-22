@@ -1,0 +1,14 @@
+{
+    "short_name": "Finance",
+    "name": "Small Stone Finance",
+    "start_url": "https://finance.smallstone.uk",
+    "background_color": "#FE5F55",
+    "display": "standalone",
+    "icons": [
+        {
+            "src": "images/logo.png",
+            "type": "image/png",
+            "sizes": "256x256"
+        }
+    ]
+}
