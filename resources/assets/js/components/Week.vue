@@ -12,7 +12,7 @@
         <div class="card w-full mb-8 mt-2 md:p-4 p-2">
             <div class="flex flex-wrap">
                 <div class="w-full">
-                    <table class="table -mt-2">
+                    <table v-show="!mobile" class="table -mt-2">
                         <thead>
                             <tr>
                                 <th align="left" class="hidden md:table-cell">Description</th>
@@ -53,9 +53,15 @@
                             </tr>
                         </tbody>
                     </table>
+
+                    <div v-show="mobile" class="-mt-2 text-center w-full py-12 text-grey-lightest">
+                        <i class="material-icons text-5xl">stay_primary_landscape</i>
+                        <br />
+                        <span class="text-center">Switch to landscape</span>
+                    </div>
                 </div>
 
-                <div class="w-full text-right mt-2">
+                <div class="w-full text-right mt-2" v-show="!mobile">
                     <button class="btn btn-primary" @click.prevent="save">Save Changes</button>
                 </div>
             </div>
@@ -75,6 +81,8 @@
         data() {
             return {
                 days: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+
+                mobile: screen.width <= 640,
 
                 week: {
                     ending: moment().day('Saturday'),
@@ -183,6 +191,10 @@
             this.week.items = [this.defaultItem];
 
             this.fetch();
+
+            window.addEventListener('resize', e => {
+                this.mobile = screen.width <= 640;
+            });
         }
     };
 </script>

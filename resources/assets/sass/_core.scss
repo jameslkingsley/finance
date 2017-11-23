@@ -52,3 +52,9 @@ textarea {
         }
     }
 }
+
+.material-icons {
+    &.text-5xl {
+        font-size: config('textSizes.5xl') !important;
+    }
+}
