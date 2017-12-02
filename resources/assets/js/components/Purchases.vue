@@ -2,7 +2,7 @@
     <div>
         <span class="text-left uppercase font-semibold w-full text-sm text-grey-lightest">
             This Month's Purchases
-            <a class="float-right text-grey-lightest opacity-50 hover:underline cursor-pointer" @click.prevent="newPurchase">New Purchase</a>
+            <a class="float-right text-off-white-2 hover:text-brand cursor-pointer" @click.prevent="newPurchase">New Purchase</a>
         </span>
 
         <div class="card p-0 w-full mt-2">

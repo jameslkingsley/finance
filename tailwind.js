@@ -15,33 +15,33 @@
 */
 
 var colors = {
-  'transparent': 'transparent',
+    transparent: 'transparent',
 
-  'brand-darkest': '#B9463E',
-  'brand-darker': '#D04E46',
-  'brand-dark': '#E7574E',
-  'brand': '#FE5F55',
-  'brand-light': '#FE6D64',
-  'brand-lighter': '#FE7C73',
-  'brand-lightest': '#FE8A83',
+    'brand-darkest': '#B9463E',
+    'brand-darker': '#D04E46',
+    'brand-dark': '#E7574E',
+    brand: '#FE5F55',
+    'brand-light': '#FE6D64',
+    'brand-lighter': '#FE7C73',
+    'brand-lightest': '#FE8A83',
 
-  'error': '#ff6d6d',
+    error: '#ff6d6d',
 
-  'black': '#000',
-  'grey-darkest': '#07080A',
-  'grey-darker': '#14181D',
-  'grey-dark': '#22282F',
-  'grey': '#495867',
-  'grey-light': '#596774',
-  'grey-lighter': '#6A7682',
-  'grey-lightest': '#adb9c6',
-  'white': '#FFF',
-  'off-white': '#f1f5f9',
-}
+    black: '#000',
+    'grey-darkest': '#07080A',
+    'grey-darker': '#14181D',
+    'grey-dark': '#22282F',
+    grey: '#495867',
+    'grey-light': '#596774',
+    'grey-lighter': '#6A7682',
+    'grey-lightest': '#adb9c6',
+    white: '#FFF',
+    'off-white': '#f1f5f9',
+    'off-white-2': '#adb9c685'
+};
 
 module.exports = {
-
-  /*
+    /*
   |-----------------------------------------------------------------------------
   | Colors                                  https://tailwindcss.com/docs/colors
   |-----------------------------------------------------------------------------
@@ -54,10 +54,9 @@ module.exports = {
   |
   */
 
-  colors: colors,
+    colors: colors,
 
-
-  /*
+    /*
   |-----------------------------------------------------------------------------
   | Screens                     https://tailwindcss.com//docs/responsive-design
   |-----------------------------------------------------------------------------
@@ -74,15 +73,14 @@ module.exports = {
   |
   */
 
-  screens: {
-    'sm': '540px',
-    'md': '640px',
-    'lg': '720px',
-    'xl': '960px',
-  },
+    screens: {
+        sm: '540px',
+        md: '640px',
+        lg: '720px',
+        xl: '960px'
+    },
 
-
-  /*
+    /*
   |-----------------------------------------------------------------------------
   | Fonts                                    https://tailwindcss.com/docs/fonts
   |-----------------------------------------------------------------------------
@@ -100,43 +98,42 @@ module.exports = {
   |
   */
 
-  fonts: {
-    'sans': [
-      '-apple-system',
-      'BlinkMacSystemFont',
-      'Segoe UI',
-      'Roboto',
-      'Oxygen',
-      'Ubuntu',
-      'Cantarell',
-      'Fira Sans',
-      'Droid Sans',
-      'Helvetica Neue',
-    ],
-    'serif': [
-      'Constantia',
-      'Lucida Bright',
-      'Lucidabright',
-      'Lucida Serif',
-      'Lucida',
-      'DejaVu Serif',
-      'Bitstream Vera Serif',
-      'Liberation Serif',
-      'Georgia',
-      'serif',
-    ],
-    'mono': [
-      'Menlo',
-      'Monaco',
-      'Consolas',
-      'Liberation Mono',
-      'Courier New',
-      'monospace',
-    ]
-  },
+    fonts: {
+        sans: [
+            '-apple-system',
+            'BlinkMacSystemFont',
+            'Segoe UI',
+            'Roboto',
+            'Oxygen',
+            'Ubuntu',
+            'Cantarell',
+            'Fira Sans',
+            'Droid Sans',
+            'Helvetica Neue'
+        ],
+        serif: [
+            'Constantia',
+            'Lucida Bright',
+            'Lucidabright',
+            'Lucida Serif',
+            'Lucida',
+            'DejaVu Serif',
+            'Bitstream Vera Serif',
+            'Liberation Serif',
+            'Georgia',
+            'serif'
+        ],
+        mono: [
+            'Menlo',
+            'Monaco',
+            'Consolas',
+            'Liberation Mono',
+            'Courier New',
+            'monospace'
+        ]
+    },
 
-
-  /*
+    /*
   |-----------------------------------------------------------------------------
   | Text sizes                         https://tailwindcss.com/docs/text-sizing
   |-----------------------------------------------------------------------------
@@ -155,22 +152,21 @@ module.exports = {
   |
   */
 
-  textSizes: {
-    'xs': '.75rem',     // 12px
-    'sm': '.875rem',    // 14px
-    'base': '1rem',     // 16px
-    'lg': '1.125rem',   // 18px
-    'xl': '1.25rem',    // 20px
-    '2xl': '1.5rem',    // 24px
-    '3xl': '1.875rem',  // 30px
-    '4xl': '2.25rem',   // 36px
-    '5xl': '3rem',      // 48px
-    '6xl': '4rem',      // 64px
-    '7xl': '5.25rem',   // 84px
-  },
+    textSizes: {
+        xs: '.75rem', // 12px
+        sm: '.875rem', // 14px
+        base: '1rem', // 16px
+        lg: '1.125rem', // 18px
+        xl: '1.25rem', // 20px
+        '2xl': '1.5rem', // 24px
+        '3xl': '1.875rem', // 30px
+        '4xl': '2.25rem', // 36px
+        '5xl': '3rem', // 48px
+        '6xl': '4rem', // 64px
+        '7xl': '5.25rem' // 84px
+    },
 
-
-  /*
+    /*
   |-----------------------------------------------------------------------------
   | Font weights                       https://tailwindcss.com/docs/font-weight
   |-----------------------------------------------------------------------------
@@ -184,20 +180,19 @@ module.exports = {
   |
   */
 
-  fontWeights: {
-    'hairline': 100,
-    'thin': 200,
-    'light': 300,
-    'normal': 400,
-    'medium': 500,
-    'semibold': 600,
-    'bold': 700,
-    'extrabold': 800,
-    'black': 900,
-  },
+    fontWeights: {
+        hairline: 100,
+        thin: 200,
+        light: 300,
+        normal: 400,
+        medium: 500,
+        semibold: 600,
+        bold: 700,
+        extrabold: 800,
+        black: 900
+    },
 
-
-  /*
+    /*
   |-----------------------------------------------------------------------------
   | Leading (line height)              https://tailwindcss.com/docs/line-height
   |-----------------------------------------------------------------------------
@@ -209,15 +204,14 @@ module.exports = {
   |
   */
 
-  leading: {
-    'none': 1,
-    'tight': 1.25,
-    'normal': 1.5,
-    'loose': 2,
-  },
+    leading: {
+        none: 1,
+        tight: 1.25,
+        normal: 1.5,
+        loose: 2
+    },
 
-
-  /*
+    /*
   |-----------------------------------------------------------------------------
   | Tracking (letter spacing)       https://tailwindcss.com/docs/letter-spacing
   |-----------------------------------------------------------------------------
@@ -229,14 +223,13 @@ module.exports = {
   |
   */
 
-  tracking: {
-    'tight': '-0.05em',
-    'normal': '0',
-    'wide': '0.05em',
-  },
+    tracking: {
+        tight: '-0.05em',
+        normal: '0',
+        wide: '0.05em'
+    },
 
-
-  /*
+    /*
   |-----------------------------------------------------------------------------
   | Text colors                         https://tailwindcss.com/docs/text-color
   |-----------------------------------------------------------------------------
@@ -249,10 +242,9 @@ module.exports = {
   |
   */
 
-  textColors: colors,
+    textColors: colors,
 
-
-  /*
+    /*
   |-----------------------------------------------------------------------------
   | Background colors             https://tailwindcss.com/docs/background-color
   |-----------------------------------------------------------------------------
@@ -265,10 +257,9 @@ module.exports = {
   |
   */
 
-  backgroundColors: colors,
+    backgroundColors: colors,
 
-
-  /*
+    /*
   |-----------------------------------------------------------------------------
   | Border widths                     https://tailwindcss.com/docs/border-width
   |-----------------------------------------------------------------------------
@@ -281,16 +272,15 @@ module.exports = {
   |
   */
 
-  borderWidths: {
-    default: '1px',
-    '0': '0',
-    '2': '2px',
-    '4': '4px',
-    '8': '8px',
-  },
+    borderWidths: {
+        default: '1px',
+        '0': '0',
+        '2': '2px',
+        '4': '4px',
+        '8': '8px'
+    },
 
-
-  /*
+    /*
   |-----------------------------------------------------------------------------
   | Border colors                     https://tailwindcss.com/docs/border-color
   |-----------------------------------------------------------------------------
@@ -307,10 +297,9 @@ module.exports = {
   |
   */
 
-  borderColors: Object.assign({ default: colors['grey-light'] }, colors),
+    borderColors: Object.assign({ default: colors['grey-light'] }, colors),
 
-
-  /*
+    /*
   |-----------------------------------------------------------------------------
   | Border radius                    https://tailwindcss.com/docs/border-radius
   |-----------------------------------------------------------------------------
@@ -323,16 +312,15 @@ module.exports = {
   |
   */
 
-  borderRadius: {
-    default: '.25rem',
-    'sm': '.125rem',
-    'lg': '.5rem',
-    'full': '9999px',
-    'none': '0',
-  },
+    borderRadius: {
+        default: '.25rem',
+        sm: '.125rem',
+        lg: '.5rem',
+        full: '9999px',
+        none: '0'
+    },
 
-
-  /*
+    /*
   |-----------------------------------------------------------------------------
   | Width                                    https://tailwindcss.com/docs/width
   |-----------------------------------------------------------------------------
@@ -352,39 +340,38 @@ module.exports = {
   |
   */
 
-  width: {
-    'auto': 'auto',
-    'px': '1px',
-    '1': '0.25rem',
-    '2': '0.5rem',
-    '3': '0.75rem',
-    '4': '1rem',
-    '6': '1.5rem',
-    '8': '2rem',
-    '10': '2.5rem',
-    '12': '3rem',
-    '16': '4rem',
-    '24': '6rem',
-    '32': '8rem',
-    '48': '12rem',
-    '64': '16rem',
-    '1/2': '50%',
-    '1/3': '33.33333%',
-    '2/3': '66.66667%',
-    '1/4': '25%',
-    '3/4': '75%',
-    '1/5': '20%',
-    '2/5': '40%',
-    '3/5': '60%',
-    '4/5': '80%',
-    '1/6': '16.66667%',
-    '5/6': '83.33333%',
-    'full': '100%',
-    'screen': '100vw'
-  },
+    width: {
+        auto: 'auto',
+        px: '1px',
+        '1': '0.25rem',
+        '2': '0.5rem',
+        '3': '0.75rem',
+        '4': '1rem',
+        '6': '1.5rem',
+        '8': '2rem',
+        '10': '2.5rem',
+        '12': '3rem',
+        '16': '4rem',
+        '24': '6rem',
+        '32': '8rem',
+        '48': '12rem',
+        '64': '16rem',
+        '1/2': '50%',
+        '1/3': '33.33333%',
+        '2/3': '66.66667%',
+        '1/4': '25%',
+        '3/4': '75%',
+        '1/5': '20%',
+        '2/5': '40%',
+        '3/5': '60%',
+        '4/5': '80%',
+        '1/6': '16.66667%',
+        '5/6': '83.33333%',
+        full: '100%',
+        screen: '100vw'
+    },
 
-
-  /*
+    /*
   |-----------------------------------------------------------------------------
   | Height                                  https://tailwindcss.com/docs/height
   |-----------------------------------------------------------------------------
@@ -399,28 +386,27 @@ module.exports = {
   |
   */
 
-  height: {
-    'auto': 'auto',
-    'px': '1px',
-    '1': '0.25rem',
-    '2': '0.5rem',
-    '3': '0.75rem',
-    '4': '1rem',
-    '6': '1.5rem',
-    '8': '2rem',
-    '10': '2.5rem',
-    '12': '3rem',
-    '16': '4rem',
-    '24': '6rem',
-    '32': '8rem',
-    '48': '12rem',
-    '64': '16rem',
-    'full': '100%',
-    'screen': '100vh'
-  },
+    height: {
+        auto: 'auto',
+        px: '1px',
+        '1': '0.25rem',
+        '2': '0.5rem',
+        '3': '0.75rem',
+        '4': '1rem',
+        '6': '1.5rem',
+        '8': '2rem',
+        '10': '2.5rem',
+        '12': '3rem',
+        '16': '4rem',
+        '24': '6rem',
+        '32': '8rem',
+        '48': '12rem',
+        '64': '16rem',
+        full: '100%',
+        screen: '100vh'
+    },
 
-
-  /*
+    /*
   |-----------------------------------------------------------------------------
   | Minimum width                        https://tailwindcss.com/docs/min-width
   |-----------------------------------------------------------------------------
@@ -434,13 +420,12 @@ module.exports = {
   |
   */
 
-  minWidth: {
-    '0': '0',
-    'full': '100%',
-  },
+    minWidth: {
+        '0': '0',
+        full: '100%'
+    },
 
-
-  /*
+    /*
   |-----------------------------------------------------------------------------
   | Minimum height                      https://tailwindcss.com/docs/min-height
   |-----------------------------------------------------------------------------
@@ -454,14 +439,13 @@ module.exports = {
   |
   */
 
-  minHeight: {
-    '0': '0',
-    'full': '100%',
-    'screen': '100vh'
-  },
+    minHeight: {
+        '0': '0',
+        full: '100%',
+        screen: '100vh'
+    },
 
-
-  /*
+    /*
   |-----------------------------------------------------------------------------
   | Maximum width                        https://tailwindcss.com/docs/max-width
   |-----------------------------------------------------------------------------
@@ -476,21 +460,20 @@ module.exports = {
   |
   */
 
-  maxWidth: {
-    'xs': '20rem',
-    'sm': '30rem',
-    'md': '40rem',
-    'lg': '50rem',
-    'xl': '60rem',
-    '2xl': '70rem',
-    '3xl': '80rem',
-    '4xl': '90rem',
-    '5xl': '100rem',
-    'full': '100%',
-  },
+    maxWidth: {
+        xs: '20rem',
+        sm: '30rem',
+        md: '40rem',
+        lg: '50rem',
+        xl: '60rem',
+        '2xl': '70rem',
+        '3xl': '80rem',
+        '4xl': '90rem',
+        '5xl': '100rem',
+        full: '100%'
+    },
 
-
-  /*
+    /*
   |-----------------------------------------------------------------------------
   | Maximum height                      https://tailwindcss.com/docs/max-height
   |-----------------------------------------------------------------------------
@@ -504,13 +487,12 @@ module.exports = {
   |
   */
 
-  maxHeight: {
-    'full': '100%',
-    'screen': '100vh',
-  },
+    maxHeight: {
+        full: '100%',
+        screen: '100vh'
+    },
 
-
-  /*
+    /*
   |-----------------------------------------------------------------------------
   | Padding                                https://tailwindcss.com/docs/padding
   |-----------------------------------------------------------------------------
@@ -525,22 +507,21 @@ module.exports = {
   |
   */
 
-  padding: {
-    'px': '1px',
-    '0': '0',
-    '1': '0.25rem',
-    '2': '0.5rem',
-    '3': '0.75rem',
-    '4': '1rem',
-    '6': '1.5rem',
-    '8': '2rem',
-    '12': '4rem',
-    '16': '8rem',
-    '24': '12rem',
-  },
+    padding: {
+        px: '1px',
+        '0': '0',
+        '1': '0.25rem',
+        '2': '0.5rem',
+        '3': '0.75rem',
+        '4': '1rem',
+        '6': '1.5rem',
+        '8': '2rem',
+        '12': '4rem',
+        '16': '8rem',
+        '24': '12rem'
+    },
 
-
-  /*
+    /*
   |-----------------------------------------------------------------------------
   | Margin                                  https://tailwindcss.com/docs/margin
   |-----------------------------------------------------------------------------
@@ -555,19 +536,18 @@ module.exports = {
   |
   */
 
-  margin: {
-    'px': '1px',
-    '0': '0',
-    '1': '0.25rem',
-    '2': '0.5rem',
-    '3': '0.75rem',
-    '4': '1rem',
-    '6': '1.5rem',
-    '8': '2rem',
-  },
+    margin: {
+        px: '1px',
+        '0': '0',
+        '1': '0.25rem',
+        '2': '0.5rem',
+        '3': '0.75rem',
+        '4': '1rem',
+        '6': '1.5rem',
+        '8': '2rem'
+    },
 
-
-  /*
+    /*
   |-----------------------------------------------------------------------------
   | Negative margin                https://tailwindcss.com/docs/negative-margin
   |-----------------------------------------------------------------------------
@@ -582,19 +562,18 @@ module.exports = {
   |
   */
 
-  negativeMargin: {
-    'px': '1px',
-    '0': '0',
-    '1': '0.25rem',
-    '2': '0.5rem',
-    '3': '0.75rem',
-    '4': '1rem',
-    '6': '1.5rem',
-    '8': '2rem',
-  },
+    negativeMargin: {
+        px: '1px',
+        '0': '0',
+        '1': '0.25rem',
+        '2': '0.5rem',
+        '3': '0.75rem',
+        '4': '1rem',
+        '6': '1.5rem',
+        '8': '2rem'
+    },
 
-
-  /*
+    /*
   |-----------------------------------------------------------------------------
   | Shadows                                https://tailwindcss.com/docs/shadows
   |-----------------------------------------------------------------------------
@@ -610,16 +589,16 @@ module.exports = {
   |
   */
 
-  shadows: {
-    default: '0 0 0 1px rgba(50,50,93,.1), 0 2px 5px 0 rgba(50,50,93,.08), 0 1px 1.5px 0 rgba(0,0,0,.07), 0 1px 2px 0 rgba(0,0,0,.08), 0 0 0 0 transparent',
-    'md': '0 4px 8px 0 rgba(0,0,0,0.12), 0 2px 4px 0 rgba(0,0,0,0.08)',
-    'lg': '0 7px 14px 0 rgba(50,50,93,.01), 0 3px 6px 0 rgba(0,0,0,.05)',
-    'inner': 'inset 0 2px 4px 0 rgba(0,0,0,0.06)',
-    'none': 'none',
-  },
+    shadows: {
+        default:
+            '0 0 0 1px rgba(50,50,93,.1), 0 2px 5px 0 rgba(50,50,93,.08), 0 1px 1.5px 0 rgba(0,0,0,.07), 0 1px 2px 0 rgba(0,0,0,.08), 0 0 0 0 transparent',
+        md: '0 4px 8px 0 rgba(0,0,0,0.12), 0 2px 4px 0 rgba(0,0,0,0.08)',
+        lg: '0 7px 14px 0 rgba(50,50,93,.01), 0 3px 6px 0 rgba(0,0,0,.05)',
+        inner: 'inset 0 2px 4px 0 rgba(0,0,0,0.06)',
+        none: 'none'
+    },
 
-
-  /*
+    /*
   |-----------------------------------------------------------------------------
   | Z-index                                https://tailwindcss.com/docs/z-index
   |-----------------------------------------------------------------------------
@@ -632,18 +611,17 @@ module.exports = {
   |
   */
 
-  zIndex: {
-    '0': 0,
-    '10': 10,
-    '20': 20,
-    '30': 30,
-    '40': 40,
-    '50': 50,
-    'auto': 'auto',
-  },
+    zIndex: {
+        '0': 0,
+        '10': 10,
+        '20': 20,
+        '30': 30,
+        '40': 40,
+        '50': 50,
+        auto: 'auto'
+    },
 
-
-  /*
+    /*
   |-----------------------------------------------------------------------------
   | Opacity                                https://tailwindcss.com/docs/opacity
   |-----------------------------------------------------------------------------
@@ -656,16 +634,15 @@ module.exports = {
   |
   */
 
-  opacity: {
-    '0': '0',
-    '25': '.25',
-    '50': '.5',
-    '75': '.75',
-    '100': '1',
-  },
+    opacity: {
+        '0': '0',
+        '25': '.25',
+        '50': '.5',
+        '75': '.75',
+        '100': '1'
+    },
 
-
-  /*
+    /*
   |-----------------------------------------------------------------------------
   | Packages
   |-----------------------------------------------------------------------------
@@ -677,7 +654,5 @@ module.exports = {
   |
   */
 
-  packages: {
-  },
-
-}
+    packages: {}
+};

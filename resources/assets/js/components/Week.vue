@@ -4,9 +4,9 @@
             This Week's Work &middot;
             <span class="hidden md:inline-block">{{ title }}</span>
             <span class="inline-block md:hidden">{{ week.ending | date }}</span>
-            <a class="float-right text-grey-lightest opacity-50 hover:underline cursor-pointer pl-2" @click.prevent="nextWeek">&gt;</a>
-            <a class="float-right text-grey-lightest opacity-50 hover:underline cursor-pointer px-2" @click.prevent="previousWeek">&lt;</a>
-            <a class="float-right text-grey-lightest opacity-50 hover:underline cursor-pointer mr-1" @click.prevent="addRow">New Row</a>
+            <a class="float-right text-off-white-2 hover:text-brand cursor-pointer pl-2" @click.prevent="nextWeek">&gt;</a>
+            <a class="float-right text-off-white-2 hover:text-brand cursor-pointer px-2" @click.prevent="previousWeek">&lt;</a>
+            <a class="float-right text-off-white-2 hover:text-brand cursor-pointer mr-1" @click.prevent="addRow">New Row</a>
         </span>
 
         <div class="card w-full mb-8 mt-2 md:p-4 p-2">
