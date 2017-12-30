@@ -82,7 +82,7 @@
             return {
                 days: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
 
-                mobile: screen.width <= 640,
+                mobile: screen.width <= 480,
 
                 week: {
                     ending: moment().day('Saturday'),
@@ -193,7 +193,7 @@
             this.fetch();
 
             window.addEventListener('resize', e => {
-                this.mobile = screen.width <= 640;
+                this.mobile = screen.width <= 480;
             });
         }
     };
