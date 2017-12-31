@@ -25,3 +25,6 @@ Route::delete('/api/expenses/{expense}', 'ExpensesController@destroy');
 Route::get('/api/purchases', 'PurchaseController@index');
 Route::post('/api/purchases', 'PurchaseController@store');
 Route::delete('/api/purchases/{purchase}', 'PurchaseController@destroy');
+
+// User
+Route::put('/api/user', 'UserBornController@update');

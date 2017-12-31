@@ -64,4 +64,22 @@ class User extends Authenticatable
     {
         return $this->hasMany(Week::class);
     }
+
+    /**
+     * Gets the average rate of the user.
+     *
+     * @return integer
+     */
+    public function averageRate()
+    {
+        $rates = collect();
+
+        foreach ($this->weeks as $week) {
+            foreach ($week->items as $item) {
+                $rates->push($item->rate);
+            }
+        }
+
+        return $rates->average();
+    }
 }

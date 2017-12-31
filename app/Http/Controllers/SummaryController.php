@@ -24,7 +24,10 @@ class SummaryController extends Controller
             return $week->total();
         });
 
-        return response()->json(compact('income', 'goal', 'expenses', 'averageWeeklyIncome', 'purchases', 'savings'));
+        $born = auth()->user()->born;
+        $averageRate = auth()->user()->averageRate();
+
+        return response()->json(compact('income', 'goal', 'expenses', 'averageWeeklyIncome', 'purchases', 'savings', 'born', 'averageRate'));
     }
 
     /**

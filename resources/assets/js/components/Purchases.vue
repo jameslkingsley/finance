@@ -29,7 +29,10 @@
                 <div class="list-item list-item-standout">
                     <span class="list-item-title">
                         Total<br />
-                        <small>{{ purchases.length }} purchases</small>
+                        <small>
+                            {{ purchases.length }} purchases
+                            <span v-if="born">&middot; {{ lifePercentage }}% of life</span>
+                        </small>
                     </span>
 
                     <span class="list-item-amount">{{ total | currency }}</span>
@@ -43,7 +46,9 @@
     export default {
         data() {
             return {
-                purchases: []
+                purchases: [],
+                born: '',
+                averageRate: 0
             };
         },
 
@@ -56,6 +61,13 @@
                 }
 
                 return value;
+            },
+
+            lifePercentage() {
+                let hours = this.total / this.averageRate;
+                let hoursInLife = 8760 * 100;
+                let percentage = hours / hoursInLife;
+                return percentage.toFixed(20).match(/^-?\d*\.?0*\d{0,2}/)[0];
             }
         },
 
@@ -94,6 +106,12 @@
 
         created() {
             this.fetch();
+
+            EventBus.listen('Born', born => (this.born = born));
+            EventBus.listen(
+                'AverageRate',
+                averageRate => (this.averageRate = averageRate)
+            );
         }
     };
 </script>

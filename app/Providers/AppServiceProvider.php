@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Week;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 

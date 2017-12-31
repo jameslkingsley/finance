@@ -1,6 +1,6 @@
 <template>
     <div class="flex flex-wrap" v-if="stats">
-        <div class="md:w-1/4 mb-8 md:mb-0 mx-auto text-center">
+        <div class="md:w-1/5 mb-8 md:mb-0 mx-auto text-center">
             <span class="inline-block w-full text-base text-grey-lightest">Income</span>
             <span class="inline-block w-full text-3xl">{{ netIncome | currency }}</span>
             <span class="inline-block w-full text-sm text-grey-lightest">
@@ -9,7 +9,7 @@
             </span>
         </div>
 
-        <div class="md:w-1/4 mb-8 md:mb-0 mx-auto text-center">
+        <div class="md:w-1/5 mb-8 md:mb-0 mx-auto text-center">
             <span class="inline-block w-full text-base text-grey-lightest">Purchases</span>
             <span class="inline-block w-full text-3xl">{{ stats.purchases | currency }}</span>
             <span class="inline-block w-full text-sm text-grey-lightest">
@@ -17,7 +17,7 @@
             </span>
         </div>
 
-        <div class="md:w-1/4 mb-8 md:mb-0 mx-auto text-center">
+        <div class="md:w-1/5 mb-8 md:mb-0 mx-auto text-center">
             <span class="inline-block w-full text-base text-grey-lightest">Savings</span>
             <span class="inline-block w-full text-3xl" @click="changeSavings">{{ stats.savings | currency }}</span>
             <span class="inline-block w-full text-sm text-grey-lightest">
@@ -25,7 +25,7 @@
             </span>
         </div>
 
-        <div class="md:w-1/4 mx-auto text-center">
+        <div class="md:w-1/5 mb-8 md:mb-0 mx-auto text-center">
             <span class="inline-block w-full text-base text-grey-lightest">Goal &middot; {{ goalCompletion }}%</span>
 
             <span class="inline-block w-full text-3xl" @click="changeGoal">
@@ -36,6 +36,27 @@
                 <span class="text-center mx-auto w-full">{{ goalTimeLeft }} weeks to go</span>
             </span>
         </div>
+
+        <div class="md:w-1/5 mx-auto text-center">
+            <span class="inline-block w-full text-base text-grey-lightest">
+                Life Usage
+            </span>
+
+            <span class="inline-block w-full text-3xl">
+                <span v-if="stats.born">{{ lifePercentage }}%</span>
+                <span v-else @click.prevent="setBornDate">Set Date</span>
+            </span>
+
+            <span class="inline-block w-full text-sm text-grey-lightest">
+                <span v-if="stats.born" class="text-center mx-auto w-full inline-block overflow-hidden" style="max-height: 23px; font-size: 9px; word-break: break-all;">
+                    {{ lifeTick }}
+                </span>
+
+                <span v-else class="text-center mx-auto w-full">
+                    Tap to set date
+                </span>
+            </span>
+        </div>
     </div>
 </template>
 
@@ -43,7 +64,8 @@
     export default {
         data() {
             return {
-                stats: null
+                stats: null,
+                lifeTick: 0
             };
         },
 
@@ -85,12 +107,24 @@
                 }
 
                 return Math.ceil(this.stats.purchases / this.netIncome * 100);
+            },
+
+            lifePercentage() {
+                let born = moment(this.stats.born);
+                let duration = moment.duration(moment().diff(born));
+                let hours = duration.asHours();
+                let hoursInLife = 8760 * 100;
+                return Math.floor(hours / hoursInLife * 100);
             }
         },
 
         methods: {
             fetch() {
-                ajax.get('/api/summary').then(r => (this.stats = r.data));
+                ajax.get('/api/summary').then(r => {
+                    this.stats = r.data;
+                    EventBus.fire('Born', this.stats.born);
+                    EventBus.fire('AverageRate', this.stats.averageRate);
+                });
             },
 
             changeGoal() {
@@ -111,6 +145,17 @@
                         this.stats.savings = Number(amount);
                     });
                 }
+            },
+
+            setBornDate() {
+                let born = prompt('Born Date in Format: YYYY-MM-DD');
+
+                if (born !== null) {
+                    ajax.put('/api/user', { born }).then(r => {
+                        this.stats.born = born;
+                        EventBus.fire('Born', born);
+                    });
+                }
             }
         },
 
@@ -118,6 +163,20 @@
             this.fetch();
 
             EventBus.listen('Updated', this.fetch);
+
+            setInterval(() => {
+                if (!this.stats) return;
+                if (!this.stats.born) return;
+                let born = moment(this.stats.born);
+                let duration = moment.duration(moment().diff(born));
+                let hours = duration.asHours();
+                let hoursInLife = 8760 * 100;
+                let percentage = hours / hoursInLife * 100;
+                this.lifeTick = percentage
+                    .toString()
+                    .split('.')[1]
+                    .substring(0, 14);
+            }, 1000);
         }
     };
 </script>

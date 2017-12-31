@@ -11,7 +11,7 @@
 
         <div class="card w-full mb-8 mt-2 md:p-4 p-2">
             <div class="flex flex-wrap">
-                <div class="w-full">
+                <div class="w-full pt-1">
                     <table v-show="!mobile" class="table -mt-2">
                         <thead>
                             <tr>
