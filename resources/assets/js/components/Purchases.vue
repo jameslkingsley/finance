@@ -65,7 +65,7 @@
 
             lifePercentage() {
                 let hours = this.total / this.averageRate;
-                let hoursInLife = 8760 * 100;
+                let hoursInLife = 8760 * 52;
                 let percentage = hours / hoursInLife;
                 return percentage.toFixed(20).match(/^-?\d*\.?0*\d{0,2}/)[0];
             }

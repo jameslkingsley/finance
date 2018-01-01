@@ -110,10 +110,10 @@
             },
 
             lifePercentage() {
-                let born = moment(this.stats.born);
+                let born = moment(this.stats.born).add(18, 'years');
                 let duration = moment.duration(moment().diff(born));
                 let hours = duration.asHours();
-                let hoursInLife = 8760 * 100;
+                let hoursInLife = 8760 * 52;
                 return Math.floor(hours / hoursInLife * 100);
             }
         },
