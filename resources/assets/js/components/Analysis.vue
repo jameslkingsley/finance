@@ -15,6 +15,7 @@
         data() {
             return {
                 weeks: [],
+                purchases: [],
                 chart: null
             };
         },
@@ -23,6 +24,7 @@
             fetch() {
                 return ajax.get('/api/analysis').then(r => {
                     this.weeks = r.data.weeks;
+                    this.purchases = r.data.purchases;
                 });
             },
 
@@ -33,13 +35,18 @@
                 };
 
                 let values = [];
+                let purchases = [];
 
                 for (let week of this.weeks) {
+                    let weekOfYear = moment(week.ending).week();
+                    purchases.push(this.purchases[weekOfYear.toString()]);
+
                     data.labels.push(moment(week.ending).format('DD/MM/YY'));
                     values.push(week.total);
                 }
 
                 data.datasets.push({ values, color: 'red' });
+                data.datasets.push({ values: purchases, color: 'blue' });
 
                 return data;
             },
