@@ -39,7 +39,9 @@
 
                 for (let week of this.weeks) {
                     let weekOfYear = moment(week.ending).week();
-                    purchases.push(this.purchases[weekOfYear.toString()]);
+                    purchases.push(
+                        week.total - this.purchases[weekOfYear.toString()]
+                    );
 
                     data.labels.push(moment(week.ending).format('DD/MM/YY'));
                     values.push(week.total);
