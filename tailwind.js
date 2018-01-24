@@ -37,7 +37,8 @@ var colors = {
     'grey-lightest': '#adb9c6',
     white: '#FFF',
     'off-white': '#f1f5f9',
-    'off-white-2': '#adb9c685'
+    'off-white-2': '#adb9c685',
+    'off-white-3': '#e6f0fc'
 };
 
 module.exports = {

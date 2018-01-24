@@ -24,6 +24,7 @@ Vue.component('f-purchases', require('./components/Purchases.vue'));
 Vue.component('f-expenses', require('./components/Expenses.vue'));
 Vue.component('f-summary', require('./components/Summary.vue'));
 Vue.component('f-analysis', require('./components/Analysis.vue'));
+Vue.component('f-calendar', require('./components/Calendar.vue'));
 
 const app = new Vue({
     el: '#app'

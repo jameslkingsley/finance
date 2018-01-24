@@ -10,6 +10,12 @@
             <f-summary></f-summary>
         </div>
 
+        <span class="text-left uppercase font-semibold w-full text-sm mb-2 text-grey-lightest">
+            5-Minute Calendar
+        </span>
+
+        <f-calendar></f-calendar>
+
         <f-week></f-week>
     </div>
 
