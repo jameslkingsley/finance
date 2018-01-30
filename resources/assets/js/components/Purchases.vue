@@ -31,7 +31,7 @@
                         Total<br />
                         <small>
                             {{ purchases.length }} purchases
-                            <span v-if="born">&middot; {{ lifePercentage }}% of life</span>
+                            <span v-if="born">&middot; {{ duration }} hours</span>
                         </small>
                     </span>
 
@@ -63,8 +63,9 @@
                 return value;
             },
 
-            lifePercentage() {
+            duration() {
                 let hours = this.total / this.averageRate;
+                return Math.ceil(hours);
                 let hoursInLife = 8760 * 52;
                 let percentage = hours / hoursInLife;
                 return percentage.toFixed(20).match(/^-?\d*\.?0*\d{0,2}/)[0];
