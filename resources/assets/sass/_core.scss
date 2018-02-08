@@ -19,6 +19,10 @@ textarea {
     }
 }
 
+[v-cloak] {
+    display: none;
+}
+
 .vdp-datepicker__calendar {
     @apply shadow-lg;
 }

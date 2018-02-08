@@ -19,6 +19,9 @@ Vue.filter('date', value => {
     return moment(value).format('DD/MM/YY');
 });
 
+Vue.component('grid', require('./components/Grid.vue'));
+Vue.component('mobile', require('./components/Mobile.vue'));
+Vue.component('bg-image', require('./components/Image.vue'));
 Vue.component('f-week', require('./components/Week.vue'));
 Vue.component('f-purchases', require('./components/Purchases.vue'));
 Vue.component('f-expenses', require('./components/Expenses.vue'));

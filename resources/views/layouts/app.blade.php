@@ -20,7 +20,7 @@
     </head>
 
     <body>
-        <div id="app">
+        <div id="app" v-cloak>
             <nav class="h-16 mb-4 md:px-0 px-6">
                 <div class="container mx-auto h-full">
                     <div class="flex items-center justify-center h-16">
