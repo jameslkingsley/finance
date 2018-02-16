@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Models\Fund;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -34,6 +35,16 @@ class User extends Authenticatable
         'goal' => 'float',
         'savings' => 'float'
     ];
+
+    /**
+     * Gets the users funds.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function funds()
+    {
+        return $this->hasMany(Fund::class);
+    }
 
     /**
      * Gets the users expenses.
