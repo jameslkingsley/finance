@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "18bfc010299b020bf6da3878c9eb9f1a",
+    "content-hash": "c9c601fb95a759e423436af414bb91b5",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -408,16 +408,16 @@
         },
         {
             "name": "jameslkingsley/laravel-livedata",
-            "version": "dev-master",
+            "version": "1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/jameslkingsley/laravel-livedata.git",
-                "reference": "4ddb80114c60aa54d9924e9e9b05d5d276fa88fe"
+                "reference": "a13df8cdc85dfa1c6f3ae5955c94d62b0eba0be4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jameslkingsley/laravel-livedata/zipball/4ddb80114c60aa54d9924e9e9b05d5d276fa88fe",
-                "reference": "4ddb80114c60aa54d9924e9e9b05d5d276fa88fe",
+                "url": "https://api.github.com/repos/jameslkingsley/laravel-livedata/zipball/a13df8cdc85dfa1c6f3ae5955c94d62b0eba0be4",
+                "reference": "a13df8cdc85dfa1c6f3ae5955c94d62b0eba0be4",
                 "shasum": ""
             },
             "require": {
@@ -448,7 +448,7 @@
             ],
             "description": "Pull database rows from a live server.",
             "homepage": "https://github.com/jameslkingsley/laravel-livedata",
-            "time": "2018-02-09T15:15:23+00:00"
+            "time": "2018-02-16T16:35:17+00:00"
         },
         {
             "name": "laravel-frontend-presets/tailwindcss",
@@ -3995,9 +3995,7 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "jameslkingsley/laravel-livedata": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
