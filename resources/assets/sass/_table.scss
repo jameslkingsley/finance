@@ -8,11 +8,11 @@
 
     td,
     th {
-        @apply text-xs text-grey relative;
+        @apply text-xs text-text relative;
         padding: 0.75rem 0;
 
         input {
-            @apply text-grey w-full p-0 rounded-none border-0 absolute pin-y pin-x;
+            @apply shadow-none text-text w-full p-0 rounded-none border-0 absolute pin-y pin-x;
             text-align: inherit;
         }
     }

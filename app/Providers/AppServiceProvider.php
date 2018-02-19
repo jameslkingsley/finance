@@ -4,7 +4,6 @@ namespace App\Providers;
 
 use App\Week;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 
@@ -31,6 +30,12 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        Route::macro('vue', function ($url, $component) {
+            return Route::get($url, function () use ($component) {
+                return vue($component);
+            });
+        });
+
+        require_once app_path('Support/Helpers.php');
     }
 }

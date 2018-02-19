@@ -20,6 +20,7 @@ class CreateFundsTable extends Migration
             $table->string('name');
             $table->bigInteger('goal')->nullable();
             $table->enum('frequency', ['week', 'month', 'year'])->nullable();
+            $table->timestamp('bills_on')->nullable();
             $table->timestamps();
         });
     }

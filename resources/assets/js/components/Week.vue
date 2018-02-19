@@ -1,16 +1,18 @@
 <template>
-    <div class="w-full">
-        <span class="text-left uppercase font-semibold w-full text-sm text-grey-lightest">
-            This Week's Work &middot;
-            <span class="hidden md:inline-block">{{ title }}</span>
-            <span class="inline-block md:hidden">{{ week.ending | date }}</span>
-            <a class="float-right text-off-white-2 hover:text-brand cursor-pointer pl-2" @click.prevent="nextWeek">&gt;</a>
-            <a class="float-right text-off-white-2 hover:text-brand cursor-pointer px-2" @click.prevent="previousWeek">&lt;</a>
-            <a class="float-right text-off-white-2 hover:text-brand cursor-pointer mr-1" @click.prevent="addRow">New Row</a>
-        </span>
+    <div>
+        <div class="card p-0">
+            <div class="card-header">
+                This Week's Work &middot;
+                <span class="hidden md:inline-block">{{ title }}</span>
+                <span class="inline-block md:hidden">{{ week.ending | date }}</span>
+                &middot; {{ weekTotal | currency }}
+                <button class="float-right btn btn-sm btn-primary ml-3" @click.prevent="save">Save Changes</button>
+                <button class="float-right btn btn-sm rounded-l-none" @click.prevent="nextWeek">&gt;</button>
+                <button class="float-right btn btn-sm ml-3 rounded-r-none" @click.prevent="previousWeek">&lt;</button>
+                <button class="float-right btn btn-sm" @click.prevent="addRow">New Row</button>
+            </div>
 
-        <div class="card w-full mb-8 mt-2 md:p-4 p-2">
-            <div class="flex flex-wrap">
+            <div class="flex flex-wrap md:p-4 p-2">
                 <div class="w-full pt-1">
                     <table v-show="!mobile" class="table -mt-2">
                         <thead>
@@ -34,7 +36,7 @@
                                 </td>
 
                                 <td align="right" width="60" class="text-left md:text-right">
-                                    <input v-model="item.rate" @focus="$event.target.select()" placeholder="Rate">
+                                    <input :value="item.rate / 100" @keyup="item.rate = $event.target.value * 100" @focus="$event.target.select()" placeholder="Rate">
                                 </td>
 
                                 <td align="right" width="60" v-for="(day, index) in days" :key="index">
@@ -46,11 +48,11 @@
                                 </td>
                             </tr>
 
-                            <tr>
+                            <!-- <tr>
                                 <th colspan="10" align="right" class="hidden md:table-cell">Weekly Total</th>
                                 <th colspan="7" align="right" class="table-cell md:hidden">Weekly Total</th>
                                 <th align="right">{{ weekTotal | currency }}</th>
-                            </tr>
+                            </tr> -->
                         </tbody>
                     </table>
 
@@ -59,10 +61,6 @@
                         <br />
                         <span class="text-center">Switch to landscape</span>
                     </div>
-                </div>
-
-                <div class="w-full text-right mt-2" v-show="!mobile">
-                    <button class="btn btn-primary" @click.prevent="save">Save Changes</button>
                 </div>
             </div>
         </div>

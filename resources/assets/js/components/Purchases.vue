@@ -1,11 +1,11 @@
 <template>
     <div>
-        <span class="text-left uppercase font-semibold w-full text-sm text-grey-lightest">
-            This Month's Purchases
-            <a class="float-right text-off-white-2 hover:text-brand cursor-pointer" @click.prevent="newPurchase">New Purchase</a>
-        </span>
+        <div class="card p-0">
+            <div class="card-header">
+                This Month's Purchases
+                <button class="btn btn-sm float-right" @click.prevent="newPurchase">New Purchase</button>
+            </div>
 
-        <div class="card p-0 w-full mt-2">
             <div class="p-4" v-show="!purchases.length">
                 <span class="text-grey-lightest text-base">
                     No purchases this month
@@ -31,7 +31,7 @@
                         Total<br />
                         <small>
                             {{ purchases.length }} purchases
-                            <span v-if="born">&middot; {{ duration }} hours</span>
+                            <span v-tooltip="'Based on your average rate'">&middot; {{ duration }} hours</span>
                         </small>
                     </span>
 
@@ -47,7 +47,6 @@
         data() {
             return {
                 purchases: [],
-                born: '',
                 averageRate: 0
             };
         },
@@ -64,11 +63,7 @@
             },
 
             duration() {
-                let hours = this.total / this.averageRate;
-                return Math.ceil(hours);
-                let hoursInLife = 8760 * 52;
-                let percentage = hours / hoursInLife;
-                return percentage.toFixed(20).match(/^-?\d*\.?0*\d{0,2}/)[0];
+                return Math.ceil(this.total / this.averageRate);
             }
         },
 
@@ -108,7 +103,6 @@
         created() {
             this.fetch();
 
-            EventBus.listen('Born', born => (this.born = born));
             EventBus.listen(
                 'AverageRate',
                 averageRate => (this.averageRate = averageRate)

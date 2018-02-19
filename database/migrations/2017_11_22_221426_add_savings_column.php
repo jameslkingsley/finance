@@ -14,7 +14,7 @@ class AddSavingsColumn extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->decimal('savings')->default(0);
+            $table->decimal('savings')->nullable()->default(0);
         });
     }
 

@@ -14,8 +14,8 @@ class SavingsController extends Controller
      */
     public function update(Request $request)
     {
-        auth()->user()->update([
-            'savings' => $request->amount
-        ]);
+        return tap(auth()->user())->update([
+            'savings' => $request->amount * 100
+        ])->savings;
     }
 }

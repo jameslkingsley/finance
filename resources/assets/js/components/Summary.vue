@@ -1,61 +1,28 @@
 <template>
-    <div class="flex flex-wrap" v-if="stats">
-        <div class="md:w-1/5 mb-8 md:mb-0 mx-auto text-center">
-            <span class="inline-block w-full text-base text-grey-lightest">Income</span>
-            <span class="inline-block w-full text-3xl">{{ netIncome | currency }}</span>
-            <span class="inline-block w-full text-sm text-grey-lightest">
-                <span class="text-left mx-auto w-1/2">{{ stats.income | currency }}</span>
-                <span class="text-right text-error mx-auto w-1/2">-{{ stats.expenses | currency }}</span>
-            </span>
-        </div>
+    <div>
+        <div class="card p-0">
+            <div class="card-header">
+                This Month's Report
+            </div>
 
-        <div class="md:w-1/5 mb-8 md:mb-0 mx-auto text-center">
-            <span class="inline-block w-full text-base text-grey-lightest">Purchases</span>
-            <span class="inline-block w-full text-3xl">{{ stats.purchases | currency }}</span>
-            <span class="inline-block w-full text-sm text-grey-lightest">
-                <span class="text-center mx-auto w-full">{{ purchasePercentage }}% of income</span>
-            </span>
-        </div>
+            <div class="flex flex-wrap py-4" v-if="stats">
+                <div class="md:w-1/5 mb-8 md:mb-0 mx-auto text-center">
+                    <span class="inline-block w-full text-base text-grey-lightest">Income</span>
+                    <span class="inline-block w-full text-3xl">{{ netIncome | currency }}</span>
+                    <span class="inline-block w-full text-sm text-grey-lightest">
+                        <span class="text-left mx-auto w-1/2">{{ stats.income | currency }}</span>
+                        <span class="text-right text-error mx-auto w-1/2">-{{ stats.transactions | currency }}</span>
+                    </span>
+                </div>
 
-        <div class="md:w-1/5 mb-8 md:mb-0 mx-auto text-center">
-            <span class="inline-block w-full text-base text-grey-lightest">Savings</span>
-            <span class="inline-block w-full text-3xl" @click="changeSavings">{{ stats.savings | currency }}</span>
-            <span class="inline-block w-full text-sm text-grey-lightest">
-                <span class="text-center mx-auto w-full">{{ savingsToGo | currency }} to go</span>
-            </span>
-        </div>
-
-        <div class="md:w-1/5 mb-8 md:mb-0 mx-auto text-center">
-            <span class="inline-block w-full text-base text-grey-lightest">Goal &middot; {{ goalCompletion }}%</span>
-
-            <span class="inline-block w-full text-3xl" @click="changeGoal">
-                <span>{{ goalAmount | currency }}</span>
-            </span>
-
-            <span class="inline-block w-full text-sm text-grey-lightest">
-                <span class="text-center mx-auto w-full">{{ goalTimeLeft }} weeks to go</span>
-            </span>
-        </div>
-
-        <div class="md:w-1/5 mx-auto text-center">
-            <span class="inline-block w-full text-base text-grey-lightest">
-                Life Usage
-            </span>
-
-            <span class="inline-block w-full text-3xl">
-                <span v-if="stats.born">{{ lifePercentage }}%</span>
-                <span v-else @click.prevent="setBornDate">Set Date</span>
-            </span>
-
-            <span class="inline-block w-full text-sm text-grey-lightest">
-                <span v-if="stats.born" class="text-center mx-auto w-full inline-block overflow-hidden" style="max-height: 23px; font-size: 9px; word-break: break-all;">
-                    {{ lifeTick }}
-                </span>
-
-                <span v-else class="text-center mx-auto w-full">
-                    Tap to set date
-                </span>
-            </span>
+                <div class="md:w-1/5 mb-8 md:mb-0 mx-auto text-center">
+                    <span class="inline-block w-full text-base text-grey-lightest">Purchases</span>
+                    <span class="inline-block w-full text-3xl">{{ stats.purchases | currency }}</span>
+                    <span class="inline-block w-full text-sm text-grey-lightest">
+                        <span class="text-center mx-auto w-full">{{ purchasePercentage }}% of income</span>
+                    </span>
+                </div>
+            </div>
         </div>
     </div>
 </template>
@@ -71,7 +38,7 @@
 
         computed: {
             netIncome() {
-                return this.stats.income - this.stats.expenses;
+                return this.stats.income - this.stats.transactions;
             },
 
             savingsToGo() {
@@ -132,17 +99,17 @@
 
                 if (amount !== null) {
                     ajax.put('/api/goal', { amount }).then(r => {
-                        this.stats.goal = Number(amount);
+                        this.stats.goal = Number(r.data);
                     });
                 }
             },
 
             changeSavings() {
-                let amount = prompt('Amount', this.stats.savings);
+                let amount = prompt('Amount', this.stats.savings / 100);
 
                 if (amount !== null) {
                     ajax.put('/api/savings', { amount }).then(r => {
-                        this.stats.savings = Number(amount);
+                        this.stats.savings = Number(r.data);
                     });
                 }
             },

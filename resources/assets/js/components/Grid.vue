@@ -68,6 +68,13 @@
                 return string.charAt(0).toUpperCase() + string.slice(1);
             },
 
+            helperDoubles() {
+                return {
+                    property: 'grid-template-columns',
+                    value: '0.5fr 0.5fr'
+                };
+            },
+
             helperThirds() {
                 return {
                     property: 'grid-template-columns',

@@ -50,6 +50,8 @@ class PurchaseController extends Controller
             'amount' => 'required|numeric',
         ]);
 
+        $attributes['amount'] = $attributes['amount'] * 100;
+
         auth()->user()->purchases()->save(
             new Purchase($attributes)
         );

@@ -1,5 +1,9 @@
 <template>
-    <div>
+    <div class="card p-0">
+        <div class="card-header">
+            Earnings Analysis
+        </div>
+
         <div v-if="this.weeks.length > 1" ref="chart"></div>
 
         <span v-if="this.weeks.length < 2" class="text-grey-lightest">
@@ -46,10 +50,10 @@
                             ? this.purchases[weekOfYear]
                             : 0;
 
-                    purchases.push(week.total - weekPurchaseAmount);
+                    purchases.push((week.total - weekPurchaseAmount) / 100);
 
                     data.labels.push(moment(week.ending).format('DD/MM/YY'));
-                    values.push(week.total);
+                    values.push(week.total / 100);
                 }
 
                 data.datasets.push({ values, color: 'red' });
@@ -68,7 +72,7 @@
                     title: 'Weekly Earnings',
                     parent: this.$refs.chart,
                     data: this.getFormattedWeeks(),
-                    format_tooltip_y: d => formatAsCurrency(d)
+                    format_tooltip_y: d => `£${d.toFixed(2)}`
                 });
             }
         },

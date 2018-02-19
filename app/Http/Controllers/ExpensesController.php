@@ -50,6 +50,8 @@ class ExpensesController extends Controller
             'amount' => 'required|numeric',
         ]);
 
+        $attributes['amount'] = $attributes['amount'] * 100;
+
         auth()->user()->expenses()->save(
             new Expense($attributes)
         );

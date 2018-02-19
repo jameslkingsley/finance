@@ -4,14 +4,14 @@ window.EventBus = new class {
     }
 
     fire(event, data = null) {
-        this.vue.$emit(event, data);
+        this.vue.$emit(event.toLowerCase(), data);
     }
 
     listen(event, callback) {
-        this.vue.$on(event, callback);
+        this.vue.$on(event.toLowerCase(), callback);
     }
 
     listenOnce(event, callback) {
-        this.vue.$once(event, callback);
+        this.vue.$once(event.toLowerCase(), callback);
     }
 }

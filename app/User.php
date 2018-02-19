@@ -3,6 +3,10 @@
 namespace App;
 
 use App\Models\Fund;
+use App\Models\Income;
+use App\Models\Saving;
+use App\Models\Adjustment;
+use App\Models\Transaction;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -32,8 +36,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $casts = [
-        'goal' => 'float',
-        'savings' => 'float'
+        //
     ];
 
     /**
@@ -44,6 +47,46 @@ class User extends Authenticatable
     public function funds()
     {
         return $this->hasMany(Fund::class);
+    }
+
+    /**
+     * Gets the users savings.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function savings()
+    {
+        return $this->hasMany(Saving::class);
+    }
+
+    /**
+     * Gets the users adjustments.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function adjustments()
+    {
+        return $this->hasMany(Adjustment::class);
+    }
+
+    /**
+     * Gets the users transactions.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function transactions()
+    {
+        return $this->hasMany(Transaction::class);
+    }
+
+    /**
+     * Gets the users incomes.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function incomes()
+    {
+        return $this->hasMany(Income::class);
     }
 
     /**

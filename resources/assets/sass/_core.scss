@@ -1,21 +1,31 @@
 * {
+    cursor: default;
     outline: 0 !important;
 }
 
 body {
-    @apply bg-off-white h-screen font-sans text-grey leading-normal;
+    @apply bg-off-white h-screen font-sans text-text leading-normal;
 }
 
 a {
     @apply text-brand;
 }
 
-input,
-textarea {
-    @apply p-1 rounded border border-grey-lightest;
+a, button, select {
+    cursor: pointer;
+}
 
-    &:focus {
-        @apply border-grey-lighter;
+input, textarea {
+    cursor: text;
+}
+
+.transition-all {
+    transition: all .3s ease;
+}
+
+.last\:rounded-b {
+    &:last-of-type {
+        @apply .rounded-b;
     }
 }
 
@@ -58,6 +68,10 @@ textarea {
 }
 
 .material-icons {
+    &.text-2xl {
+        font-size: config('textSizes.2xl') !important;
+    }
+
     &.text-5xl {
         font-size: config('textSizes.5xl') !important;
     }

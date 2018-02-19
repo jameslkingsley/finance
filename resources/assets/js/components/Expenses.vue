@@ -1,11 +1,11 @@
 <template>
     <div>
-        <span class="text-left uppercase font-semibold w-full text-sm text-grey-lightest">
-            Monthly Expenses
-            <a class="float-right text-off-white-2 hover:text-brand cursor-pointer" @click.prevent="addExpense">New Expense</a>
-        </span>
+        <div class="card p-0">
+            <div class="card-header">
+                Monthly Expenses
+                <button class="btn btn-sm float-right" @click.prevent="addExpense">New Expense</button>
+            </div>
 
-        <div class="card p-0 w-full mt-2">
             <div class="p-4" v-show="!items.length">
                 <span class="text-grey-lightest text-base">
                     No expenses each month

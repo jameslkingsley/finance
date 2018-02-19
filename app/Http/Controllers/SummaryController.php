@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Week;
 use App\Purchase;
 use Illuminate\Http\Request;
 
@@ -15,8 +14,18 @@ class SummaryController extends Controller
      */
     public function index()
     {
-        $income = Week::income();
-        $expenses = auth()->user()->expenses->sum('amount');
+        $income = auth()->user()->incomes()
+            ->whereBetween('created_at', [
+                now()->startOfMonth(),
+                now()->endOfMonth()
+            ])->get()->sum('amount');
+
+        $transactions = auth()->user()->transactions()
+            ->whereBetween('created_at', [
+                now()->startOfMonth(),
+                now()->endOfMonth()
+            ])->get()->sum('amount');
+
         $purchases = Purchase::thisMonth()->sum('amount');
         $goal = auth()->user()->goal;
         $savings = auth()->user()->savings;
@@ -27,7 +36,7 @@ class SummaryController extends Controller
         $born = auth()->user()->born;
         $averageRate = auth()->user()->averageRate();
 
-        return response()->json(compact('income', 'goal', 'expenses', 'averageWeeklyIncome', 'purchases', 'savings', 'born', 'averageRate'));
+        return response()->json(compact('income', 'transactions', 'goal', 'averageWeeklyIncome', 'purchases', 'savings', 'born', 'averageRate'));
     }
 
     /**

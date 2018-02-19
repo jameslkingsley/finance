@@ -16,7 +16,8 @@
     "laravel-mix": "^1.0",
     "lodash": "^4.17.4",
     "moment": "^2.19.2",
-    "tailwindcss": "^0.1.6",
+    "tailwindcss": "^0.4.1",
+    "v-tooltip": "^2.0.0-rc.31",
     "vue": "^2.1.10",
     "vue-toasted": "^1.1.23",
     "vuejs-datepicker": "^0.9.19"

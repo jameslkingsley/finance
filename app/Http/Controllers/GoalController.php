@@ -25,8 +25,8 @@ class GoalController extends Controller
      */
     public function update(Request $request)
     {
-        auth()->user()->update([
-            'goal' => $request->amount
-        ]);
+        return tap(auth()->user())->update([
+            'goal' => $request->amount * 100
+        ])->goal;
     }
 }

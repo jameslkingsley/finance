@@ -26,7 +26,14 @@ var colors = {
     'brand-lighter': '#FE7C73',
     'brand-lightest': '#FE8A83',
 
+    // Alternate Colours
+    // 'brand-dark': '#555abf',
+    // brand: '#6772e5',
+    // 'brand-light': '#7795f8',
+
+    success: '#24b47e',
     error: '#ff6d6d',
+    warning: '#ffa27b',
 
     black: '#000',
     'grey-darkest': '#07080A',
@@ -39,6 +46,7 @@ var colors = {
     white: '#FFF',
     'off-white': '#e6ebf1',
     'off-white-2': '#f5f9fc',
+    'off-white-3': 'rgb(251, 251, 251)',
 
     line: '#f2f2f2',
     text: '#525f7f'
@@ -301,7 +309,7 @@ module.exports = {
   |
   */
 
-    borderColors: Object.assign({ default: colors['grey-light'] }, colors),
+    borderColors: Object.assign({ default: colors['line'] }, colors),
 
     /*
   |-----------------------------------------------------------------------------

@@ -1,3 +1,16 @@
 .card {
-    @apply bg-white rounded shadow-lg w-full p-4;
+    @apply .bg-white .rounded .shadow-lg .w-full .p-4;
+
+    .card-header {
+        @apply .bg-off-white-2 .border-b .border-line .rounded .rounded-t .rounded-b-none .w-full .p-4 .font-semibold;
+
+        .btn-sm {
+            padding: 0.5rem 0.75rem;
+            margin-top: -4px;
+        }
+
+        .btn-xs {
+            margin-top: -4px;
+        }
+    }
 }

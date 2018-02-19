@@ -1,35 +1,27 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="flex flex-col items-center">
-        <span class="text-left uppercase font-semibold w-full text-sm mb-2 text-grey-lightest">
-            This Month's Report
-        </span>
-
-        <div class="card mb-8">
+    <grid auto-rows="min-content" doubles gap="2rem">
+        {{-- <grid-child column-start="1" column-end="3"> --}}
             <f-summary></f-summary>
-        </div>
+            <f-income></f-income>
+        {{-- </grid-child> --}}
 
-        <f-week></f-week>
-    </div>
+        {{-- <grid-child column-start="1" column-end="3"> --}}
+        {{-- </grid-child> --}}
 
-    <div class="flex flex-wrap items-center">
-        <span class="text-left uppercase font-semibold w-full text-sm mb-2 text-grey-lightest">
-            Earnings Analysis
-        </span>
+        <f-funds></f-funds>
+        <f-savings></f-savings>
 
-        <div class="card w-full mb-8 md:p-4 p-0">
+        <grid-child column-start="1" column-end="3">
+            <f-week></f-week>
+        </grid-child>
+
+        <grid-child column-start="1" column-end="3">
             <f-analysis></f-analysis>
-        </div>
-    </div>
+        </grid-child>
 
-    <div class="flex flex-wrap items-center">
-        <div class="w-full md:w-auto md:flex-1 self-stretch md:mr-3 md:mb-0 mb-8">
-            <f-expenses></f-expenses>
-        </div>
-
-        <div class="w-full md:w-auto md:flex-1 self-stretch md:ml-3">
-            <f-purchases></f-purchases>
-        </div>
-    </div>
+        <f-expenses></f-expenses>
+        <f-purchases></f-purchases>
+    </grid>
 @endsection

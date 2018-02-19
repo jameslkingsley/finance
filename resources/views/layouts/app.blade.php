@@ -35,15 +35,7 @@
                                 <a class="no-underline hover:underline text-grey-darker pr-3 text-sm font-semibold" href="{{ url('/login') }}">Login</a>
                                 <a class="no-underline hover:underline text-grey-darker text-sm font-semibold" href="{{ url('/register') }}">Register</a>
                             @else
-                                <span class="text-grey-darker text-sm pr-4 font-semibold">{{ Auth::user()->name }}</span>
-
-                                <a href="{{ route('logout') }}"
-                                    class="no-underline hover:underline text-grey-darker text-sm font-semibold"
-                                    onclick="event.preventDefault();
-                                    document.getElementById('logout-form').submit();">Logout</a>
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                    {{ csrf_field() }}
-                                </form>
+                                <a href="/settings" class="text-grey-darker text-sm font-semibold no-underline hover:underline">{{ auth()->user()->name }}</a>
                             @endguest
                         </div>
                     </div>
