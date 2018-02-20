@@ -52,7 +52,7 @@ class FundController extends Controller
             'name' => 'required|max:30',
             'goal' => 'required|numeric',
             'savings' => 'present|boolean',
-            'fixed' => 'present|numeric|required_with:savings',
+            'fixed' => 'present|numeric',
             'frequency' => 'nullable|in:week,month,year',
         ]);
 
