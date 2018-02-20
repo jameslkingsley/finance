@@ -1,9 +1,25 @@
 <template>
     <div>
+        <f-modal title="Create a purchase" small :show="creatingPurchase" textComplete="Create" @close="creatingPurchase = false" @complete="createPurchase">
+            <form>
+                <grid class="w-1/2 mx-auto mb-4" auto-rows="min-content" singles gap="1rem">
+                    <label>
+                        <span>Description</span>
+                        <input v-model="newPurchase.description" placeholder="Description" maxlength="30">
+                    </label>
+
+                    <label>
+                        <span>Amount</span>
+                        <input v-model.number="newPurchase.amount" placeholder="£30.00">
+                    </label>
+                </grid>
+            </form>
+        </f-modal>
+
         <div class="card p-0">
             <div class="card-header">
-                This Month's Purchases
-                <button class="btn btn-sm float-right" @click.prevent="newPurchase">New Purchase</button>
+                Your Purchases
+                <button class="btn btn-sm float-right" @click.prevent="creatingPurchase = true">Create</button>
             </div>
 
             <div class="p-4" v-show="!purchases.length">
@@ -31,7 +47,6 @@
                         Total<br />
                         <small>
                             {{ purchases.length }} purchases
-                            <span v-tooltip="'Based on your average rate'">&middot; {{ duration }} hours</span>
                         </small>
                     </span>
 
@@ -47,7 +62,12 @@
         data() {
             return {
                 purchases: [],
-                averageRate: 0
+                averageRate: 0,
+                creatingPurchase: false,
+                newPurchase: new Form({
+                    description: '',
+                    amount: null
+                })
             };
         },
 
@@ -60,10 +80,6 @@
                 }
 
                 return value;
-            },
-
-            duration() {
-                return Math.ceil(this.total / this.averageRate);
             }
         },
 
@@ -72,41 +88,27 @@
                 ajax.get('/api/purchases').then(r => (this.purchases = r.data));
             },
 
-            newPurchase() {
-                let description = prompt('Description');
-
-                if (description !== null) {
-                    let amount = prompt('Amount');
-
-                    if (amount !== null) {
-                        ajax
-                            .post('/api/purchases', {
-                                description,
-                                amount
-                            })
-                            .then(r => {
-                                this.fetch();
-                                EventBus.fire('Updated');
-                            });
-                    }
-                }
+            createPurchase() {
+                ajax
+                    .post('/api/purchases', this.newPurchase.get())
+                    .then(this.fetch)
+                    .then(r => {
+                        this.creatingPurchase = false;
+                        this.newPurchase.reset();
+                        EventBus.fire('updated');
+                    });
             },
 
             deletePurchase(id) {
                 ajax.delete(`/api/purchases/${id}`).then(r => {
                     this.fetch();
-                    EventBus.fire('Updated');
+                    EventBus.fire('updated');
                 });
             }
         },
 
         created() {
             this.fetch();
-
-            EventBus.listen(
-                'AverageRate',
-                averageRate => (this.averageRate = averageRate)
-            );
         }
     };
 </script>

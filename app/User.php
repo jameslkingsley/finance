@@ -4,7 +4,6 @@ namespace App;
 
 use App\Models\Fund;
 use App\Models\Income;
-use App\Models\Saving;
 use App\Models\Adjustment;
 use App\Models\Transaction;
 use Illuminate\Notifications\Notifiable;
@@ -47,16 +46,6 @@ class User extends Authenticatable
     public function funds()
     {
         return $this->hasMany(Fund::class);
-    }
-
-    /**
-     * Gets the users savings.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function savings()
-    {
-        return $this->hasMany(Saving::class);
     }
 
     /**

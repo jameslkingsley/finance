@@ -2005,7 +2005,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     computed: {
         total: function total() {
-            return _.sumBy(this.funds, 'goal');
+            return this.totalPerWeek * 52 / 12;
         },
         totalPerWeek: function totalPerWeek() {
             return _.sumBy(this.funds, 'per_week');
@@ -2356,42 +2356,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
             funds: [],
-            savings: [],
             amount: null,
             leftWith: null,
             finished: false,
@@ -2432,32 +2401,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 }
             }
 
-            var _iteratorNormalCompletion2 = true;
-            var _didIteratorError2 = false;
-            var _iteratorError2 = undefined;
-
-            try {
-                for (var _iterator2 = this.savings[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-                    var saving = _step2.value;
-
-                    console.log(saving.store);
-                    value -= saving.store;
-                }
-            } catch (err) {
-                _didIteratorError2 = true;
-                _iteratorError2 = err;
-            } finally {
-                try {
-                    if (!_iteratorNormalCompletion2 && _iterator2.return) {
-                        _iterator2.return();
-                    }
-                } finally {
-                    if (_didIteratorError2) {
-                        throw _iteratorError2;
-                    }
-                }
-            }
-
             return value * 100;
         }
     },
@@ -2471,8 +2414,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             ajax.post('/api/user/income', {
                 funds: this.funds,
-                amount: this.amount,
-                savings: this.savings
+                amount: this.amount
             }).then(function (r) {
                 _this.finished = true;
                 _this.completing = false;
@@ -2499,13 +2441,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             _this2.funds = _.map(funds, function (fund) {
                 fund.deposit = Number((fund.deposit / 100).toFixed(2));
                 return fund;
-            });
-        });
-
-        EventBus.listen('savings', function (savings) {
-            _this2.savings = _.map(savings, function (saving) {
-                saving.store = Number((saving.deposit / 100).toFixed(2));
-                return saving;
             });
         });
     }
@@ -2674,12 +2609,32 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
             purchases: [],
-            averageRate: 0
+            averageRate: 0,
+            creatingPurchase: false,
+            newPurchase: new Form({
+                description: '',
+                amount: null
+            })
         };
     },
 
@@ -2714,9 +2669,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }
 
             return value;
-        },
-        duration: function duration() {
-            return Math.ceil(this.total / this.averageRate);
         }
     },
 
@@ -2728,191 +2680,27 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 return _this.purchases = r.data;
             });
         },
-        newPurchase: function newPurchase() {
+        createPurchase: function createPurchase() {
             var _this2 = this;
 
-            var description = prompt('Description');
-
-            if (description !== null) {
-                var amount = prompt('Amount');
-
-                if (amount !== null) {
-                    ajax.post('/api/purchases', {
-                        description: description,
-                        amount: amount
-                    }).then(function (r) {
-                        _this2.fetch();
-                        EventBus.fire('Updated');
-                    });
-                }
-            }
+            ajax.post('/api/purchases', this.newPurchase.get()).then(this.fetch).then(function (r) {
+                _this2.creatingPurchase = false;
+                _this2.newPurchase.reset();
+                EventBus.fire('updated');
+            });
         },
         deletePurchase: function deletePurchase(id) {
             var _this3 = this;
 
             ajax.delete('/api/purchases/' + id).then(function (r) {
                 _this3.fetch();
-                EventBus.fire('Updated');
+                EventBus.fire('updated');
             });
         }
     },
 
     created: function created() {
-        var _this4 = this;
-
         this.fetch();
-
-        EventBus.listen('AverageRate', function (averageRate) {
-            return _this4.averageRate = averageRate;
-        });
-    }
-});
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/Savings.vue":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-    data: function data() {
-        return {
-            savings: [],
-            creatingSaving: false,
-            newSaving: new Form({
-                name: '',
-                goal: null,
-                deposit: null
-            })
-        };
-    },
-
-
-    computed: {
-        total: function total() {
-            return _.sumBy(this.savings, 'goal');
-        },
-        totalPerWeek: function totalPerWeek() {
-            return _.sumBy(this.savings, 'deposit');
-        }
-    },
-
-    methods: {
-        fetch: function fetch() {
-            var _this = this;
-
-            ajax.get('/api/user/savings').then(function (r) {
-                _this.savings = r.data;
-                EventBus.fire('savings', _this.savings);
-            });
-        },
-        createSaving: function createSaving() {
-            var _this2 = this;
-
-            ajax.post('/api/user/savings', this.newSaving.get()).then(this.fetch).then(function (r) {
-                _this2.creatingSaving = false;
-                _this2.newSaving.reset();
-            });
-        },
-        progressStyles: function progressStyles(saving) {
-            return {
-                width: saving.completion * 100 + '%',
-                background: colorFromPercentage(saving.completion)
-            };
-        }
-    },
-
-    created: function created() {
-        this.fetch();
-
-        EventBus.listen('income', this.fetch);
     }
 });
 
@@ -3521,21 +3309,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         //
     }
 });
-
-/***/ }),
-
-/***/ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-2208a1dc\",\"scoped\":true,\"hasInlineConfig\":true}!./node_modules/sass-loader/lib/loader.js!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/js/components/Savings.vue":
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")(false);
-// imports
-
-
-// module
-exports.push([module.i, "\n.slide-enter-active[data-v-2208a1dc],\n.slide-leave-active[data-v-2208a1dc] {\n  -webkit-transition: width .3s ease;\n  transition: width .3s ease;\n}\n.slide-enter[data-v-2208a1dc],\n.slide-leave-to[data-v-2208a1dc] {\n  width: 0;\n}\n", ""]);
-
-// exports
-
 
 /***/ }),
 
@@ -44588,366 +44361,6 @@ if (false) {
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-2208a1dc\",\"hasScoped\":true,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/Savings.vue":
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _c(
-        "f-modal",
-        {
-          attrs: {
-            title: "Create a savings goal",
-            small: "",
-            show: _vm.creatingSaving,
-            textComplete: "Create"
-          },
-          on: {
-            close: function($event) {
-              _vm.creatingSaving = false
-            },
-            complete: _vm.createSaving
-          }
-        },
-        [
-          _c(
-            "form",
-            [
-              _c(
-                "grid",
-                {
-                  staticClass: "w-1/2 mx-auto mb-4",
-                  attrs: {
-                    "auto-rows": "min-content",
-                    singles: "",
-                    gap: "1rem"
-                  }
-                },
-                [
-                  _c("label", [
-                    _c("span", [_vm._v("Name")]),
-                    _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.newSaving.name,
-                          expression: "newSaving.name"
-                        }
-                      ],
-                      attrs: { placeholder: "Name", maxlength: "30" },
-                      domProps: { value: _vm.newSaving.name },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(_vm.newSaving, "name", $event.target.value)
-                        }
-                      }
-                    })
-                  ]),
-                  _vm._v(" "),
-                  _c("label", [
-                    _c("span", [_vm._v("Goal")]),
-                    _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model.number",
-                          value: _vm.newSaving.goal,
-                          expression: "newSaving.goal",
-                          modifiers: { number: true }
-                        }
-                      ],
-                      attrs: { placeholder: "£1000.00 (optional)" },
-                      domProps: { value: _vm.newSaving.goal },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(
-                            _vm.newSaving,
-                            "goal",
-                            _vm._n($event.target.value)
-                          )
-                        },
-                        blur: function($event) {
-                          _vm.$forceUpdate()
-                        }
-                      }
-                    })
-                  ]),
-                  _vm._v(" "),
-                  _c("label", [
-                    _c(
-                      "span",
-                      {
-                        directives: [
-                          {
-                            name: "tooltip",
-                            rawName: "v-tooltip",
-                            value: "Amount you wish to deposit each paycheck",
-                            expression:
-                              "'Amount you wish to deposit each paycheck'"
-                          }
-                        ]
-                      },
-                      [_vm._v("Deposit")]
-                    ),
-                    _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model.number",
-                          value: _vm.newSaving.deposit,
-                          expression: "newSaving.deposit",
-                          modifiers: { number: true }
-                        }
-                      ],
-                      attrs: { placeholder: "£30.00 (optional)" },
-                      domProps: { value: _vm.newSaving.deposit },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(
-                            _vm.newSaving,
-                            "deposit",
-                            _vm._n($event.target.value)
-                          )
-                        },
-                        blur: function($event) {
-                          _vm.$forceUpdate()
-                        }
-                      }
-                    })
-                  ])
-                ]
-              )
-            ],
-            1
-          )
-        ]
-      ),
-      _vm._v(" "),
-      _c("div", { staticClass: "card p-0" }, [
-        _c("div", { staticClass: "card-header" }, [
-          _vm._v("\n            Your Savings\n            "),
-          _c(
-            "button",
-            {
-              staticClass: "btn btn-sm float-right",
-              on: {
-                click: function($event) {
-                  $event.preventDefault()
-                  _vm.creatingSaving = true
-                }
-              }
-            },
-            [_vm._v("Create")]
-          )
-        ]),
-        _vm._v(" "),
-        _c(
-          "div",
-          {
-            directives: [
-              {
-                name: "show",
-                rawName: "v-show",
-                value: !_vm.savings.length,
-                expression: "!savings.length"
-              }
-            ],
-            staticClass: "p-4"
-          },
-          [
-            _c("span", { staticClass: "text-grey-lightest text-base" }, [
-              _vm._v(
-                "\n                You have no savings goal yet\n            "
-              )
-            ])
-          ]
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          {
-            directives: [
-              {
-                name: "show",
-                rawName: "v-show",
-                value: _vm.savings.length,
-                expression: "savings.length"
-              }
-            ],
-            staticClass: "list"
-          },
-          [
-            _vm._l(_vm.savings, function(saving, index) {
-              return _c(
-                "div",
-                { key: index, staticClass: "list-item without-padding" },
-                [
-                  _c("span", { staticClass: "list-item-title pt-2 px-4" }, [
-                    _c("p", { staticClass: "m-0" }, [
-                      _vm._v(_vm._s(saving.name))
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "small",
-                      {
-                        directives: [
-                          {
-                            name: "tooltip",
-                            rawName: "v-tooltip",
-                            value: "Amount to deposit each week",
-                            expression: "'Amount to deposit each week'"
-                          }
-                        ],
-                        staticClass: "opacity-75"
-                      },
-                      [
-                        _vm._v(
-                          "\n                        " +
-                            _vm._s(_vm._f("currency")(saving.deposit)) +
-                            "\n                    "
-                        )
-                      ]
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "span",
-                    {
-                      staticClass: "list-item-amount text-right pt-2 px-4 pb-2"
-                    },
-                    [
-                      _c("p", { staticClass: "m-0" }, [
-                        _vm._v(
-                          "\n                        " +
-                            _vm._s(_vm._f("currency")(saving.goal)) +
-                            "\n                    "
-                        )
-                      ]),
-                      _vm._v(" "),
-                      saving.amount_left
-                        ? _c(
-                            "small",
-                            {
-                              directives: [
-                                {
-                                  name: "tooltip",
-                                  rawName: "v-tooltip",
-                                  value: "Amount left till goal met",
-                                  expression: "'Amount left till goal met'"
-                                }
-                              ],
-                              staticClass: "opacity-75"
-                            },
-                            [
-                              _vm._v(
-                                "\n                        " +
-                                  _vm._s(
-                                    _vm._f("currency")(saving.amount_left)
-                                  ) +
-                                  "\n                    "
-                              )
-                            ]
-                          )
-                        : _c("small", [
-                            _vm._v(
-                              "\n                         \n                    "
-                            )
-                          ])
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    { staticClass: "inline-block w-full h-1 overflow-hidden" },
-                    [
-                      _c("span", {
-                        staticClass: "float-left h-full transition-all",
-                        style: _vm.progressStyles(saving)
-                      })
-                    ]
-                  )
-                ]
-              )
-            }),
-            _vm._v(" "),
-            _c("div", { staticClass: "list-item list-item-standout" }, [
-              _c("span", { staticClass: "list-item-title" }, [
-                _vm._v("\n                    Total"),
-                _c("br"),
-                _vm._v(" "),
-                _c("small", [
-                  _vm._v(_vm._s(_vm.savings.length) + " saving goals")
-                ])
-              ]),
-              _vm._v(" "),
-              _c("span", { staticClass: "list-item-amount" }, [
-                _vm._v(
-                  "\n                    " +
-                    _vm._s(_vm._f("currency")(_vm.total))
-                ),
-                _c("br"),
-                _vm._v(" "),
-                _c(
-                  "small",
-                  {
-                    directives: [
-                      {
-                        name: "tooltip",
-                        rawName: "v-tooltip",
-                        value: "Per Week",
-                        expression: "'Per Week'"
-                      }
-                    ],
-                    staticClass: "opacity-75"
-                  },
-                  [
-                    _vm._v(
-                      "\n                        " +
-                        _vm._s(_vm._f("currency")(_vm.totalPerWeek)) +
-                        "\n                    "
-                    )
-                  ]
-                )
-              ])
-            ])
-          ],
-          2
-        )
-      ])
-    ],
-    1
-  )
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-2208a1dc", module.exports)
-  }
-}
-
-/***/ }),
-
 /***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-260f3386\",\"hasScoped\":true,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/Grid.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -45272,129 +44685,221 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("div", { staticClass: "card p-0" }, [
-      _c("div", { staticClass: "card-header" }, [
-        _vm._v("\n            This Month's Purchases\n            "),
-        _c(
-          "button",
-          {
-            staticClass: "btn btn-sm float-right",
-            on: {
-              click: function($event) {
-                $event.preventDefault()
-                _vm.newPurchase($event)
-              }
-            }
-          },
-          [_vm._v("New Purchase")]
-        )
-      ]),
-      _vm._v(" "),
+  return _c(
+    "div",
+    [
       _c(
-        "div",
+        "f-modal",
         {
-          directives: [
-            {
-              name: "show",
-              rawName: "v-show",
-              value: !_vm.purchases.length,
-              expression: "!purchases.length"
-            }
-          ],
-          staticClass: "p-4"
+          attrs: {
+            title: "Create a purchase",
+            small: "",
+            show: _vm.creatingPurchase,
+            textComplete: "Create"
+          },
+          on: {
+            close: function($event) {
+              _vm.creatingPurchase = false
+            },
+            complete: _vm.createPurchase
+          }
         },
         [
-          _c("span", { staticClass: "text-grey-lightest text-base" }, [
-            _vm._v("\n                No purchases this month\n            ")
-          ])
+          _c(
+            "form",
+            [
+              _c(
+                "grid",
+                {
+                  staticClass: "w-1/2 mx-auto mb-4",
+                  attrs: {
+                    "auto-rows": "min-content",
+                    singles: "",
+                    gap: "1rem"
+                  }
+                },
+                [
+                  _c("label", [
+                    _c("span", [_vm._v("Description")]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.newPurchase.description,
+                          expression: "newPurchase.description"
+                        }
+                      ],
+                      attrs: { placeholder: "Description", maxlength: "30" },
+                      domProps: { value: _vm.newPurchase.description },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.newPurchase,
+                            "description",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c("label", [
+                    _c("span", [_vm._v("Amount")]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model.number",
+                          value: _vm.newPurchase.amount,
+                          expression: "newPurchase.amount",
+                          modifiers: { number: true }
+                        }
+                      ],
+                      attrs: { placeholder: "£30.00" },
+                      domProps: { value: _vm.newPurchase.amount },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.newPurchase,
+                            "amount",
+                            _vm._n($event.target.value)
+                          )
+                        },
+                        blur: function($event) {
+                          _vm.$forceUpdate()
+                        }
+                      }
+                    })
+                  ])
+                ]
+              )
+            ],
+            1
+          )
         ]
       ),
       _vm._v(" "),
-      _c(
-        "div",
-        {
-          directives: [
+      _c("div", { staticClass: "card p-0" }, [
+        _c("div", { staticClass: "card-header" }, [
+          _vm._v("\n            Your Purchases\n            "),
+          _c(
+            "button",
             {
-              name: "show",
-              rawName: "v-show",
-              value: _vm.purchases.length,
-              expression: "purchases.length"
-            }
-          ],
-          staticClass: "list pt-2"
-        },
-        [
-          _vm._l(_vm.purchases, function(purchase, index) {
-            return _c("div", { key: index, staticClass: "list-item" }, [
+              staticClass: "btn btn-sm float-right",
+              on: {
+                click: function($event) {
+                  $event.preventDefault()
+                  _vm.creatingPurchase = true
+                }
+              }
+            },
+            [_vm._v("Create")]
+          )
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            directives: [
+              {
+                name: "show",
+                rawName: "v-show",
+                value: !_vm.purchases.length,
+                expression: "!purchases.length"
+              }
+            ],
+            staticClass: "p-4"
+          },
+          [
+            _c("span", { staticClass: "text-grey-lightest text-base" }, [
+              _vm._v("\n                No purchases this month\n            ")
+            ])
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            directives: [
+              {
+                name: "show",
+                rawName: "v-show",
+                value: _vm.purchases.length,
+                expression: "purchases.length"
+              }
+            ],
+            staticClass: "list pt-2"
+          },
+          [
+            _vm._l(_vm.purchases, function(purchase, index) {
+              return _c("div", { key: index, staticClass: "list-item" }, [
+                _c("span", { staticClass: "list-item-title" }, [
+                  _vm._v(
+                    "\n                    " + _vm._s(purchase.description)
+                  ),
+                  _c("br"),
+                  _vm._v(" "),
+                  _c("small", [
+                    _vm._v(
+                      "\n                        " +
+                        _vm._s(_vm._f("date")(purchase.created_at)) +
+                        " ·\n                        "
+                    ),
+                    _c(
+                      "a",
+                      {
+                        on: {
+                          click: function($event) {
+                            $event.preventDefault()
+                            _vm.deletePurchase(purchase.id)
+                          }
+                        }
+                      },
+                      [_vm._v("Delete")]
+                    )
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("span", { staticClass: "list-item-amount" }, [
+                  _vm._v(_vm._s(_vm._f("currency")(purchase.amount)))
+                ])
+              ])
+            }),
+            _vm._v(" "),
+            _c("div", { staticClass: "list-item list-item-standout" }, [
               _c("span", { staticClass: "list-item-title" }, [
-                _vm._v("\n                    " + _vm._s(purchase.description)),
+                _vm._v("\n                    Total"),
                 _c("br"),
                 _vm._v(" "),
                 _c("small", [
                   _vm._v(
                     "\n                        " +
-                      _vm._s(_vm._f("date")(purchase.created_at)) +
-                      " ·\n                        "
-                  ),
-                  _c(
-                    "a",
-                    {
-                      on: {
-                        click: function($event) {
-                          $event.preventDefault()
-                          _vm.deletePurchase(purchase.id)
-                        }
-                      }
-                    },
-                    [_vm._v("Delete")]
+                      _vm._s(_vm.purchases.length) +
+                      " purchases\n                    "
                   )
                 ])
               ]),
               _vm._v(" "),
               _c("span", { staticClass: "list-item-amount" }, [
-                _vm._v(_vm._s(_vm._f("currency")(purchase.amount)))
+                _vm._v(_vm._s(_vm._f("currency")(_vm.total)))
               ])
             ])
-          }),
-          _vm._v(" "),
-          _c("div", { staticClass: "list-item list-item-standout" }, [
-            _c("span", { staticClass: "list-item-title" }, [
-              _vm._v("\n                    Total"),
-              _c("br"),
-              _vm._v(" "),
-              _c("small", [
-                _vm._v(
-                  "\n                        " +
-                    _vm._s(_vm.purchases.length) +
-                    " purchases\n                        "
-                ),
-                _c(
-                  "span",
-                  {
-                    directives: [
-                      {
-                        name: "tooltip",
-                        rawName: "v-tooltip",
-                        value: "Based on your average rate",
-                        expression: "'Based on your average rate'"
-                      }
-                    ]
-                  },
-                  [_vm._v("· " + _vm._s(_vm.duration) + " hours")]
-                )
-              ])
-            ]),
-            _vm._v(" "),
-            _c("span", { staticClass: "list-item-amount" }, [
-              _vm._v(_vm._s(_vm._f("currency")(_vm.total)))
-            ])
-          ])
-        ],
-        2
-      )
-    ])
-  ])
+          ],
+          2
+        )
+      ])
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -45416,90 +44921,131 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("div", { staticClass: "card p-0" }, [
-      _c("div", { staticClass: "card-header" }, [
-        _vm._v("\n            This Month's Report\n        ")
-      ]),
-      _vm._v(" "),
-      _vm.stats
-        ? _c("div", { staticClass: "flex flex-wrap py-4" }, [
-            _c(
-              "div",
-              { staticClass: "md:w-1/5 mb-8 md:mb-0 mx-auto text-center" },
+    _c(
+      "div",
+      { staticClass: "card p-0" },
+      [
+        _c("div", { staticClass: "card-header" }, [
+          _vm._v("\n            This Month's Report\n        ")
+        ]),
+        _vm._v(" "),
+        _vm.stats
+          ? _c(
+              "grid",
+              {
+                staticClass: "py-4 items-center",
+                staticStyle: { height: "calc(100% - 57px)" },
+                attrs: { "template-rows": "1fr", doubles: "" }
+              },
               [
-                _c(
-                  "span",
-                  {
-                    staticClass:
-                      "inline-block w-full text-base text-grey-lightest"
-                  },
-                  [_vm._v("Income")]
-                ),
-                _vm._v(" "),
-                _c("span", { staticClass: "inline-block w-full text-3xl" }, [
-                  _vm._v(_vm._s(_vm._f("currency")(_vm.netIncome)))
+                _c("div", { staticClass: "text-center" }, [
+                  _c(
+                    "span",
+                    {
+                      staticClass:
+                        "inline-block w-full text-base text-grey-lightest"
+                    },
+                    [_vm._v("You Have")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "span",
+                    {
+                      directives: [
+                        {
+                          name: "tooltip",
+                          rawName: "v-tooltip",
+                          value: "Amount you have to spend",
+                          expression: "'Amount you have to spend'"
+                        }
+                      ],
+                      staticClass: "inline-block w-full text-3xl"
+                    },
+                    [_vm._v(_vm._s(_vm._f("currency")(_vm.netIncome)))]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "span",
+                    {
+                      staticClass:
+                        "inline-block w-full text-sm text-grey-lightest"
+                    },
+                    [
+                      _c(
+                        "span",
+                        {
+                          directives: [
+                            {
+                              name: "tooltip",
+                              rawName: "v-tooltip",
+                              value: "Income before funds",
+                              expression: "'Income before funds'"
+                            }
+                          ],
+                          staticClass: "text-left mx-auto w-1/2"
+                        },
+                        [_vm._v(_vm._s(_vm._f("currency")(_vm.stats.income)))]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "span",
+                        {
+                          directives: [
+                            {
+                              name: "tooltip",
+                              rawName: "v-tooltip",
+                              value: "Total funds deducted",
+                              expression: "'Total funds deducted'"
+                            }
+                          ],
+                          staticClass: "text-right text-error mx-auto w-1/2"
+                        },
+                        [
+                          _vm._v(
+                            "-" +
+                              _vm._s(_vm._f("currency")(_vm.stats.transactions))
+                          )
+                        ]
+                      )
+                    ]
+                  )
                 ]),
                 _vm._v(" "),
-                _c(
-                  "span",
-                  {
-                    staticClass:
-                      "inline-block w-full text-sm text-grey-lightest"
-                  },
-                  [
-                    _c("span", { staticClass: "text-left mx-auto w-1/2" }, [
-                      _vm._v(_vm._s(_vm._f("currency")(_vm.stats.income)))
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "span",
-                      { staticClass: "text-right text-error mx-auto w-1/2" },
-                      [
-                        _vm._v(
-                          "-" +
-                            _vm._s(_vm._f("currency")(_vm.stats.transactions))
-                        )
-                      ]
-                    )
-                  ]
-                )
-              ]
-            ),
-            _vm._v(" "),
-            _c(
-              "div",
-              { staticClass: "md:w-1/5 mb-8 md:mb-0 mx-auto text-center" },
-              [
-                _c(
-                  "span",
-                  {
-                    staticClass:
-                      "inline-block w-full text-base text-grey-lightest"
-                  },
-                  [_vm._v("Purchases")]
-                ),
-                _vm._v(" "),
-                _c("span", { staticClass: "inline-block w-full text-3xl" }, [
-                  _vm._v(_vm._s(_vm._f("currency")(_vm.stats.purchases)))
-                ]),
-                _vm._v(" "),
-                _c(
-                  "span",
-                  {
-                    staticClass:
-                      "inline-block w-full text-sm text-grey-lightest"
-                  },
-                  [
-                    _c("span", { staticClass: "text-center mx-auto w-full" }, [
-                      _vm._v(_vm._s(_vm.purchasePercentage) + "% of income")
-                    ])
-                  ]
-                )
+                _c("div", { staticClass: "text-center" }, [
+                  _c(
+                    "span",
+                    {
+                      staticClass:
+                        "inline-block w-full text-base text-grey-lightest"
+                    },
+                    [_vm._v("Purchases")]
+                  ),
+                  _vm._v(" "),
+                  _c("span", { staticClass: "inline-block w-full text-3xl" }, [
+                    _vm._v(_vm._s(_vm._f("currency")(_vm.stats.purchases)))
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "span",
+                    {
+                      staticClass:
+                        "inline-block w-full text-sm text-grey-lightest"
+                    },
+                    [
+                      _c(
+                        "span",
+                        { staticClass: "text-center mx-auto w-full" },
+                        [_vm._v(_vm._s(_vm.purchasePercentage) + "% of income")]
+                      )
+                    ]
+                  )
+                ])
               ]
             )
-          ])
-        : _vm._e()
-    ])
+          : _vm._e()
+      ],
+      1
+    )
   ])
 }
 var staticRenderFns = []
@@ -45885,9 +45431,19 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("span", { staticClass: "list-item-amount" }, [
-                _vm._v(
-                  "\n                    " +
-                    _vm._s(_vm._f("currency")(_vm.total))
+                _c(
+                  "span",
+                  {
+                    directives: [
+                      {
+                        name: "tooltip",
+                        rawName: "v-tooltip",
+                        value: "Per Month",
+                        expression: "'Per Month'"
+                      }
+                    ]
+                  },
+                  [_vm._v(_vm._s(_vm._f("currency")(_vm.total)))]
                 ),
                 _c("br"),
                 _vm._v(" "),
@@ -46228,116 +45784,6 @@ var render = function() {
                       )
                 ]
               )
-            })
-          ),
-          _vm._v(" "),
-          _c(
-            "div",
-            {
-              directives: [
-                {
-                  name: "show",
-                  rawName: "v-show",
-                  value: _vm.savings.length,
-                  expression: "savings.length"
-                }
-              ],
-              staticClass: "list pb-0 list-ignore-last"
-            },
-            _vm._l(_vm.savings, function(saving, index) {
-              return _c("div", { key: index, staticClass: "list-item" }, [
-                saving.completion < 1
-                  ? _c(
-                      "span",
-                      { staticClass: "list-item-title font-semibold" },
-                      [
-                        _c("p", { staticClass: "m-0" }, [
-                          _vm._v(_vm._s(saving.name))
-                        ]),
-                        _vm._v(" "),
-                        _c(
-                          "small",
-                          {
-                            directives: [
-                              {
-                                name: "tooltip",
-                                rawName: "v-tooltip",
-                                value: "Amount you need to deposit this week",
-                                expression:
-                                  "'Amount you need to deposit this week'"
-                              }
-                            ],
-                            staticClass: "font-normal"
-                          },
-                          [
-                            _vm._v(
-                              "\n                            " +
-                                _vm._s(_vm._f("currency")(saving.deposit)) +
-                                "\n                        "
-                            )
-                          ]
-                        )
-                      ]
-                    )
-                  : _vm._e(),
-                _vm._v(" "),
-                saving.completion < 1
-                  ? _c("span", { staticClass: "list-item-amount text-right" }, [
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model.number",
-                            value: saving.store,
-                            expression: "saving.store",
-                            modifiers: { number: true }
-                          }
-                        ],
-                        staticClass:
-                          "plain font-semibold text-lg text-right pr-0",
-                        attrs: { placeholder: "£0.00" },
-                        domProps: { value: saving.store },
-                        on: {
-                          focus: function($event) {
-                            $event.target.select()
-                          },
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.$set(
-                              saving,
-                              "store",
-                              _vm._n($event.target.value)
-                            )
-                          },
-                          blur: function($event) {
-                            _vm.$forceUpdate()
-                          }
-                        }
-                      })
-                    ])
-                  : _c(
-                      "span",
-                      { staticClass: "list-item-title font-semibold w-full" },
-                      [
-                        _c("p", { staticClass: "m-0" }, [
-                          _vm._v(
-                            "\n                            " +
-                              _vm._s(saving.name) +
-                              "\n                            "
-                          ),
-                          _c(
-                            "i",
-                            {
-                              staticClass: "material-icons text-2xl float-right"
-                            },
-                            [_vm._v("check")]
-                          )
-                        ])
-                      ]
-                    )
-              ])
             })
           ),
           _vm._v(" "),
@@ -46793,7 +46239,7 @@ var render = function() {
     this.weeks.length > 1 ? _c("div", { ref: "chart" }) : _vm._e(),
     _vm._v(" "),
     this.weeks.length < 2
-      ? _c("span", { staticClass: "text-grey-lightest" }, [
+      ? _c("p", { staticClass: "text-grey-lightest p-4" }, [
           _vm._v("\n        Not enough data yet\n    ")
         ])
       : _vm._e()
@@ -46903,33 +46349,6 @@ if (false) {
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-ee4d38c4", module.exports)
   }
-}
-
-/***/ }),
-
-/***/ "./node_modules/vue-style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-2208a1dc\",\"scoped\":true,\"hasInlineConfig\":true}!./node_modules/sass-loader/lib/loader.js!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/js/components/Savings.vue":
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__("./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-2208a1dc\",\"scoped\":true,\"hasInlineConfig\":true}!./node_modules/sass-loader/lib/loader.js!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/js/components/Savings.vue");
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__("./node_modules/vue-style-loader/lib/addStylesClient.js")("65ba40bc", content, false, {});
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-2208a1dc\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/sass-loader/lib/loader.js!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Savings.vue", function() {
-     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-2208a1dc\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/sass-loader/lib/loader.js!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Savings.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
 }
 
 /***/ }),
@@ -58236,7 +57655,6 @@ Vue.component('f-purchases', __webpack_require__("./resources/assets/js/componen
 Vue.component('f-expenses', __webpack_require__("./resources/assets/js/components/Expenses.vue"));
 Vue.component('f-summary', __webpack_require__("./resources/assets/js/components/Summary.vue"));
 Vue.component('f-funds', __webpack_require__("./resources/assets/js/components/Funds.vue"));
-Vue.component('f-savings', __webpack_require__("./resources/assets/js/components/Savings.vue"));
 Vue.component('f-income', __webpack_require__("./resources/assets/js/components/Income.vue"));
 Vue.component('f-analysis', __webpack_require__("./resources/assets/js/components/Analysis.vue"));
 
@@ -58836,58 +58254,6 @@ if (false) {(function () {
     hotAPI.createRecord("data-v-54873d2b", Component.options)
   } else {
     hotAPI.reload("data-v-54873d2b", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-
-/***/ "./resources/assets/js/components/Savings.vue":
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__("./node_modules/vue-style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-2208a1dc\",\"scoped\":true,\"hasInlineConfig\":true}!./node_modules/sass-loader/lib/loader.js!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/js/components/Savings.vue")
-}
-var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
-/* script */
-var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/Savings.vue")
-/* template */
-var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-2208a1dc\",\"hasScoped\":true,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/Savings.vue")
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = injectStyle
-/* scopeId */
-var __vue_scopeId__ = "data-v-2208a1dc"
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources\\assets\\js\\components\\Savings.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-2208a1dc", Component.options)
-  } else {
-    hotAPI.reload("data-v-2208a1dc", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true

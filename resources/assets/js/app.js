@@ -10,7 +10,6 @@ Vue.component('f-purchases', require('./components/Purchases.vue'));
 Vue.component('f-expenses', require('./components/Expenses.vue'));
 Vue.component('f-summary', require('./components/Summary.vue'));
 Vue.component('f-funds', require('./components/Funds.vue'));
-Vue.component('f-savings', require('./components/Savings.vue'));
 Vue.component('f-income', require('./components/Income.vue'));
 Vue.component('f-analysis', require('./components/Analysis.vue'));
 

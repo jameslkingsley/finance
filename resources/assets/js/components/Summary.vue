@@ -5,24 +5,24 @@
                 This Month's Report
             </div>
 
-            <div class="flex flex-wrap py-4" v-if="stats">
-                <div class="md:w-1/5 mb-8 md:mb-0 mx-auto text-center">
-                    <span class="inline-block w-full text-base text-grey-lightest">Income</span>
-                    <span class="inline-block w-full text-3xl">{{ netIncome | currency }}</span>
+            <grid template-rows="1fr" doubles class="py-4 items-center" style="height: calc(100% - 57px)" v-if="stats">
+                <div class="text-center">
+                    <span class="inline-block w-full text-base text-grey-lightest">You Have</span>
+                    <span class="inline-block w-full text-3xl" v-tooltip="'Amount you have to spend'">{{ netIncome | currency }}</span>
                     <span class="inline-block w-full text-sm text-grey-lightest">
-                        <span class="text-left mx-auto w-1/2">{{ stats.income | currency }}</span>
-                        <span class="text-right text-error mx-auto w-1/2">-{{ stats.transactions | currency }}</span>
+                        <span class="text-left mx-auto w-1/2" v-tooltip="'Income before funds'">{{ stats.income | currency }}</span>
+                        <span class="text-right text-error mx-auto w-1/2" v-tooltip="'Total funds deducted'">-{{ stats.transactions | currency }}</span>
                     </span>
                 </div>
 
-                <div class="md:w-1/5 mb-8 md:mb-0 mx-auto text-center">
+                <div class="text-center">
                     <span class="inline-block w-full text-base text-grey-lightest">Purchases</span>
                     <span class="inline-block w-full text-3xl">{{ stats.purchases | currency }}</span>
                     <span class="inline-block w-full text-sm text-grey-lightest">
                         <span class="text-center mx-auto w-full">{{ purchasePercentage }}% of income</span>
                     </span>
                 </div>
-            </div>
+            </grid>
         </div>
     </div>
 </template>

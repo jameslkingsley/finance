@@ -69,36 +69,6 @@
                     </div>
                 </div>
 
-                <div class="list pb-0 list-ignore-last" v-show="savings.length">
-                    <div
-                        class="list-item"
-                        v-for="(saving, index) in savings"
-                        :key="index">
-                        <span v-if="saving.completion < 1" class="list-item-title font-semibold">
-                            <p class="m-0">{{ saving.name }}</p>
-
-                            <small class="font-normal" v-tooltip="'Amount you need to deposit this week'">
-                                {{ saving.deposit | currency }}
-                            </small>
-                        </span>
-
-                        <span v-if="saving.completion < 1" class="list-item-amount text-right">
-                            <input
-                                class="plain font-semibold text-lg text-right pr-0"
-                                @focus="$event.target.select()"
-                                v-model.number="saving.store"
-                                placeholder="£0.00">
-                        </span>
-
-                        <span v-else class="list-item-title font-semibold w-full">
-                            <p class="m-0">
-                                {{ saving.name }}
-                                <i class="material-icons text-2xl float-right">check</i>
-                            </p>
-                        </span>
-                    </div>
-                </div>
-
                 <div class="px-4 py-8 text-center">
                     <p class="text-grey-lightest text-sm">You're left with</p>
                     <p class="font-hairline text-6xl">{{ leftWith !== null ? leftWith : afterFunds | currency }}</p>
@@ -113,7 +83,6 @@
         data() {
             return {
                 funds: [],
-                savings: [],
                 amount: null,
                 leftWith: null,
                 finished: false,
@@ -133,11 +102,6 @@
                     value -= fund.deposit;
                 }
 
-                for (let saving of this.savings) {
-                    console.log(saving.store);
-                    value -= saving.store;
-                }
-
                 return value * 100;
             }
         },
@@ -150,8 +114,7 @@
                 ajax
                     .post('/api/user/income', {
                         funds: this.funds,
-                        amount: this.amount,
-                        savings: this.savings
+                        amount: this.amount
                     })
                     .then(r => {
                         this.finished = true;
@@ -179,13 +142,6 @@
                 this.funds = _.map(funds, fund => {
                     fund.deposit = Number((fund.deposit / 100).toFixed(2));
                     return fund;
-                });
-            });
-
-            EventBus.listen('savings', savings => {
-                this.savings = _.map(savings, saving => {
-                    saving.store = Number((saving.deposit / 100).toFixed(2));
-                    return saving;
                 });
             });
         }

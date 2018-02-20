@@ -83,7 +83,7 @@
                     </span>
 
                     <span class="list-item-amount">
-                        {{ total | currency }}<br />
+                        <span v-tooltip="'Per Month'">{{ total | currency }}</span><br />
                         <small class="opacity-75" v-tooltip="'Per Week'">
                             {{ totalPerWeek | currency }}
                         </small>
@@ -115,7 +115,7 @@
 
         computed: {
             total() {
-                return _.sumBy(this.funds, 'goal');
+                return this.totalPerWeek * 52 / 12;
             },
 
             totalPerWeek() {

@@ -4,7 +4,6 @@ namespace App\Http\Controllers\API;
 
 use App\Models\Fund;
 use App\Models\Income;
-use App\Models\Saving;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -50,7 +49,6 @@ class IncomeController extends Controller
     {
         $request->validate([
             'funds' => 'required',
-            'savings' => 'required',
             'amount' => 'required|numeric',
         ]);
 
@@ -61,11 +59,6 @@ class IncomeController extends Controller
         foreach ($request->funds as $fund) {
             Fund::findOrFail($fund['id'])
                 ->createTransaction($fund['deposit']);
-        }
-
-        foreach ($request->savings as $saving) {
-            Saving::findOrFail($saving['id'])
-                ->createTransaction($saving['store']);
         }
     }
 

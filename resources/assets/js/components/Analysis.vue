@@ -6,9 +6,9 @@
 
         <div v-if="this.weeks.length > 1" ref="chart"></div>
 
-        <span v-if="this.weeks.length < 2" class="text-grey-lightest">
+        <p v-if="this.weeks.length < 2" class="text-grey-lightest p-4">
             Not enough data yet
-        </span>
+        </p>
     </div>
 </template>
 

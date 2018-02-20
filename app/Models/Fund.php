@@ -292,7 +292,7 @@ class Fund extends Model
      *
      * @return \App\Models\Transaction
      */
-    public function createTransaction(int $amount)
+    public function createTransaction($amount)
     {
         if (!$amount) {
             return;
