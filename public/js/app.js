@@ -44998,7 +44998,7 @@ var render = function() {
                               expression: "'Total funds deducted'"
                             }
                           ],
-                          staticClass: "text-right text-error mx-auto w-1/2"
+                          staticClass: "text-right text-warning mx-auto w-1/2"
                         },
                         [
                           _vm._v(

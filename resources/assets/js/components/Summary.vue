@@ -11,7 +11,7 @@
                     <span class="inline-block w-full text-3xl" v-tooltip="'Amount you have to spend'">{{ netIncome | currency }}</span>
                     <span class="inline-block w-full text-sm text-grey-lightest">
                         <span class="text-left mx-auto w-1/2" v-tooltip="'Income before funds'">{{ stats.income | currency }}</span>
-                        <span class="text-right text-error mx-auto w-1/2" v-tooltip="'Total funds deducted'">-{{ stats.transactions | currency }}</span>
+                        <span class="text-right text-warning mx-auto w-1/2" v-tooltip="'Total funds deducted'">-{{ stats.transactions | currency }}</span>
                     </span>
                 </div>
 
