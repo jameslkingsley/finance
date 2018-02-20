@@ -28,7 +28,7 @@
                 </span>
             </div>
 
-            <div class="list pt-2" v-show="purchases.length">
+            <div class="list" v-show="purchases.length">
                 <div class="list-item" v-for="(purchase, index) in purchases" :key="index">
                     <span class="list-item-title">
                         {{ purchase.description }}<br />

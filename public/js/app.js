@@ -2764,7 +2764,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     computed: {
         netIncome: function netIncome() {
-            return this.stats.income - this.stats.transactions;
+            return this.stats.income - this.stats.transactions - this.stats.purchases;
         },
         savingsToGo: function savingsToGo() {
             return this.stats.goal - this.stats.savings;
@@ -2791,7 +2791,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 return 0;
             }
 
-            return Math.ceil(this.stats.purchases / this.netIncome * 100);
+            return Math.ceil(this.stats.purchases / (this.stats.income - this.stats.transactions) * 100);
         },
         lifePercentage: function lifePercentage() {
             var born = moment(this.stats.born).add(18, 'years');
@@ -44849,7 +44849,7 @@ var render = function() {
                 expression: "purchases.length"
               }
             ],
-            staticClass: "list pt-2"
+            staticClass: "list"
           },
           [
             _vm._l(_vm.purchases, function(purchase, index) {

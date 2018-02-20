@@ -38,7 +38,11 @@
 
         computed: {
             netIncome() {
-                return this.stats.income - this.stats.transactions;
+                return (
+                    this.stats.income -
+                    this.stats.transactions -
+                    this.stats.purchases
+                );
             },
 
             savingsToGo() {
@@ -73,7 +77,11 @@
                     return 0;
                 }
 
-                return Math.ceil(this.stats.purchases / this.netIncome * 100);
+                return Math.ceil(
+                    this.stats.purchases /
+                        (this.stats.income - this.stats.transactions) *
+                        100
+                );
             },
 
             lifePercentage() {
