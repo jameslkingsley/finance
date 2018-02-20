@@ -26,6 +26,16 @@
                         <span v-tooltip="'When will the money next leave your account?'">Bills On</span>
                         <input type="date" v-model="newFund.bills_on">
                     </label>
+
+                    <label>
+                        <input class="plain float-left w-auto mr-2 mt-1" type="checkbox" v-model="newFund.savings">
+                        <span class="float-left w-auto" v-tooltip="'Is this a savings fund?'">Savings Fund</span>
+                    </label>
+
+                    <label v-show="newFund.savings">
+                        <span v-tooltip="'Fixed amount to deposit each paycheck'">Fixed Deposit</span>
+                        <input v-model.number="newFund.fixed" placeholder="£50.00">
+                    </label>
                 </grid>
             </form>
         </f-modal>
@@ -107,8 +117,10 @@
                 newFund: new Form({
                     name: '',
                     goal: null,
-                    frequency: null,
-                    bills_on: null
+                    fixed: null,
+                    savings: false,
+                    bills_on: null,
+                    frequency: null
                 })
             };
         },

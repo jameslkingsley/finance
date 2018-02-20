@@ -45,6 +45,15 @@ class Fund extends Model
     ];
 
     /**
+     * Attribute casts.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'savings' => 'boolean'
+    ];
+
+    /**
      * Gets the deposit value.
      *
      * @return integer
@@ -111,6 +120,16 @@ class Fund extends Model
     }
 
     /**
+     * Sets the fixed amount field.
+     *
+     * @return void
+     */
+    public function setFixedAttribute($value)
+    {
+        $this->attributes['fixed'] = $value * 100;
+    }
+
+    /**
      * Gets the next date of the bill.
      *
      * @return \Illuminate\Support\Carbon
@@ -159,6 +178,10 @@ class Fund extends Model
      */
     public function getPerWeekAttribute()
     {
+        if (!is_null($this->fixed)) {
+            return $this->fixed;
+        }
+
         if ($this->frequency === 'month') {
             return ($this->goal * 12) / 52;
         }
@@ -197,6 +220,10 @@ class Fund extends Model
      */
     public function getThisWeekAttribute()
     {
+        if (!is_null($this->fixed)) {
+            return $this->fixed;
+        }
+
         $amountLeft = $this->amount_left;
         $weeksLeft = $this->weeksLeft();
 

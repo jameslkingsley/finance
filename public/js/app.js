@@ -1983,6 +1983,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: {
@@ -1996,8 +2006,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             newFund: new Form({
                 name: '',
                 goal: null,
-                frequency: null,
-                bills_on: null
+                fixed: null,
+                savings: false,
+                bills_on: null,
+                frequency: null
             })
         };
     },
@@ -45247,7 +45259,125 @@ var render = function() {
                         }
                       }
                     })
-                  ])
+                  ]),
+                  _vm._v(" "),
+                  _c("label", [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.newFund.savings,
+                          expression: "newFund.savings"
+                        }
+                      ],
+                      staticClass: "plain float-left w-auto mr-2 mt-1",
+                      attrs: { type: "checkbox" },
+                      domProps: {
+                        checked: Array.isArray(_vm.newFund.savings)
+                          ? _vm._i(_vm.newFund.savings, null) > -1
+                          : _vm.newFund.savings
+                      },
+                      on: {
+                        change: function($event) {
+                          var $$a = _vm.newFund.savings,
+                            $$el = $event.target,
+                            $$c = $$el.checked ? true : false
+                          if (Array.isArray($$a)) {
+                            var $$v = null,
+                              $$i = _vm._i($$a, $$v)
+                            if ($$el.checked) {
+                              $$i < 0 &&
+                                (_vm.newFund.savings = $$a.concat([$$v]))
+                            } else {
+                              $$i > -1 &&
+                                (_vm.newFund.savings = $$a
+                                  .slice(0, $$i)
+                                  .concat($$a.slice($$i + 1)))
+                            }
+                          } else {
+                            _vm.$set(_vm.newFund, "savings", $$c)
+                          }
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c(
+                      "span",
+                      {
+                        directives: [
+                          {
+                            name: "tooltip",
+                            rawName: "v-tooltip",
+                            value: "Is this a savings fund?",
+                            expression: "'Is this a savings fund?'"
+                          }
+                        ],
+                        staticClass: "float-left w-auto"
+                      },
+                      [_vm._v("Savings Fund")]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "label",
+                    {
+                      directives: [
+                        {
+                          name: "show",
+                          rawName: "v-show",
+                          value: _vm.newFund.savings,
+                          expression: "newFund.savings"
+                        }
+                      ]
+                    },
+                    [
+                      _c(
+                        "span",
+                        {
+                          directives: [
+                            {
+                              name: "tooltip",
+                              rawName: "v-tooltip",
+                              value: "Fixed amount to deposit each paycheck",
+                              expression:
+                                "'Fixed amount to deposit each paycheck'"
+                            }
+                          ]
+                        },
+                        [_vm._v("Fixed Deposit")]
+                      ),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model.number",
+                            value: _vm.newFund.fixed,
+                            expression: "newFund.fixed",
+                            modifiers: { number: true }
+                          }
+                        ],
+                        attrs: { placeholder: "£50.00" },
+                        domProps: { value: _vm.newFund.fixed },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.newFund,
+                              "fixed",
+                              _vm._n($event.target.value)
+                            )
+                          },
+                          blur: function($event) {
+                            _vm.$forceUpdate()
+                          }
+                        }
+                      })
+                    ]
+                  )
                 ]
               )
             ],

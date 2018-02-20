@@ -51,6 +51,8 @@ class FundController extends Controller
             'bills_on' => 'nullable',
             'name' => 'required|max:30',
             'goal' => 'required|numeric',
+            'savings' => 'present|boolean',
+            'fixed' => 'present|numeric|required_with:savings',
             'frequency' => 'nullable|in:week,month,year',
         ]);
 

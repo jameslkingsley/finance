@@ -19,8 +19,10 @@ class CreateFundsTable extends Migration
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('name');
             $table->bigInteger('goal')->nullable();
+            $table->bigInteger('fixed')->nullable();
             $table->enum('frequency', ['week', 'month', 'year'])->nullable();
             $table->timestamp('bills_on')->nullable();
+            $table->boolean('savings')->default(false);
             $table->timestamps();
         });
     }

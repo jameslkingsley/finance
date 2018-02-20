@@ -24,10 +24,10 @@ class SummaryController extends Controller
     public function index()
     {
         $income = auth()->user()->incomes()
-            ->whereBetween('created_at', [
+            /*->whereBetween('created_at', [
                 now()->startOfMonth(),
                 now()->endOfMonth()
-            ])->get()->sum('amount');
+            ])*/->get()->sum('amount');
 
         $transactions = auth()->user()->transactions()
             ->whereBetween('created_at', [
