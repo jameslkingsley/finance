@@ -178,7 +178,7 @@ class Fund extends Model
      */
     public function getPerWeekAttribute()
     {
-        if (!$this->fixed) {
+        if ($this->fixed) {
             return $this->fixed;
         }
 
@@ -220,7 +220,7 @@ class Fund extends Model
      */
     public function getThisWeekAttribute()
     {
-        if (!$this->fixed) {
+        if ($this->fixed) {
             return $this->fixed;
         }
 
